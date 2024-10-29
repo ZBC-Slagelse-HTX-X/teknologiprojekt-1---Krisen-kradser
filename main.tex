@@ -1,0 +1,66 @@
+%%% PREAMBLE
+\documentclass[12pt, a4paper]{article}
+%% Packages
+% Layout
+\usepackage{parskip} % Changes parskip from being indent-based to adding vertical space
+\usepackage[margin=2.5cm]{geometry} % Adjust margins to comply with 2,5cm standard
+\usepackage{float}
+\usepackage{pdflscape}
+
+% Font management (for math and normal text)
+\usepackage{sourcesanspro} % Changes font to Source Sans Pro
+\usepackage{amssymb, amsmath, amsthm} % Adds math functionality, fonts and environments
+
+% Bibliography and comment management
+\usepackage[backend=biber,style=nature]{biblatex} % Bibliography management
+\addbibresource{bibliography.bib} % Sets the bibliography-file
+\usepackage{csquotes} % Adds babel-biliography compatability
+\usepackage{comment} % Comments package for citation-purposes
+
+% Appendix, attachments management
+\usepackage[toc,page]{appendix} %
+\renewcommand{\appendixtocname}{Appendiks}
+\renewcommand{\appendixpagename}{\centering{Appendiks}}
+\usepackage{pdfpages} % Including PDF-pages
+    \usepackage{eso-pic}
+    \usepackage{atbegshi}
+    \usepackage{ifthen}
+    \usepackage{calc}
+
+% miscellaneous
+\usepackage[danish]{translator}
+\usepackage[danish]{babel} % Multi-lingual support - danish
+\usepackage{lipsum} % Adds lipsum functionality
+\usepackage{graphicx} %Titlepage - graphic support
+\usepackage[colorlinks = true,linkcolor = blue,urlcolor  = blue,citecolor = blue,anchorcolor = blue]{hyperref} %Titlepage - customizes hyperlinks
+
+
+%%% Document management
+\begin{document}
+%% Front matter
+    \pagenumbering{roman}
+    \input{titlepage/titlepage.tex}
+    \newpage
+%    \input{preface/preface.tex}
+    \newpage
+    \tableofcontents
+    \newpage
+%% Main body
+    \pagenumbering{arabic}
+%    \input{section_1/section_1.tex} \newpage
+%    \input{section_2/section_2.tex} \newpage
+%    \input{section_3/section_3.tex} \newpage
+    \newpage
+%% Back matter
+     \printbibliography[heading=bibintoc,title={Litteraturliste}]
+     \begin{appendices} \newpage
+         \section{Projektbeskrivelse} \newpage
+        \renewcommand*{\thepage}{A\arabic{page}}
+         \includepdf[pages=-,delta=5 5,frame=true,landscape=true,nup=1x2,pagecommand={\thispagestyle{plain}}]{./project description/project_description.pdf}
+%         \renewcommand*{\thepage}{\arabic{page}}
+%         \section{Logbog} \newpage
+%         \renewcommand*{\thepage}{B\arabic{page}}
+%         \includepdf[pages=-,delta=5 5,frame=true,landscape=true,nup=1x2,pagecommand={\thispagestyle{plain}}]{Log/log.pdf}
+%         \renewcommand*{\thepage}{\arabic{page}}
+     \end{appendices}
+  \end{document}
