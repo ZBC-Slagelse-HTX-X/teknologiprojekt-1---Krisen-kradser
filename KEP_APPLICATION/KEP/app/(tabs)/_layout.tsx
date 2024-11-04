@@ -12,17 +12,28 @@ export default function TabLayout() {
         },
         headerShadowVisible: false,
         headerTintColor: "#222b00",
-        tabBarStyle: {
-          backgroundColor: '#fff'
+        tabBarStyle: { 
+          backgroundColor: "#fff", 
         }
+
       }}
     >
       <Tabs.Screen
-        name="index" 
+        name="index"
         options={{
-          title: 'Home',
+          title: 'Hjem',
           tabBarIcon: ({color, focused}) => (
             <Ionicons name={focused ? 'home-sharp' : 'home-outline'} color={color} size={24} />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="bibliotek"
+        options={{
+          title: 'Bibliotek',
+          tabBarIcon: ({color, focused}) => (
+            <Ionicons name={focused ? 'book-sharp' : 'book-outline'} color={color} size={24} />
           ),
         }}
       />
