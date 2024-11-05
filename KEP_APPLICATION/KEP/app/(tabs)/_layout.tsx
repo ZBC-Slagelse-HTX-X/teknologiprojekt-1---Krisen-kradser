@@ -6,14 +6,15 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: '#ffd33d',
+        tabBarActiveTintColor: '#dda15e', // Tab bar icon and text color
+        tabBarInactiveTintColor: '#dda15e',
         headerStyle: {
-          backgroundColor: '#fff',
+          backgroundColor: '#283618', // Header bacground color
         },
         headerShadowVisible: false,
-        headerTintColor: "#222b00",
+        headerTintColor: "#dda15e", // Header font color
         tabBarStyle: { 
-          backgroundColor: "#fff", 
+          backgroundColor: "#606c38", // Tab bar background color
         }
 
       }}
@@ -34,6 +35,16 @@ export default function TabLayout() {
           title: 'Bibliotek',
           tabBarIcon: ({color, focused}) => (
             <Ionicons name={focused ? 'book-sharp' : 'book-outline'} color={color} size={24} />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="e-beregner"
+        options={{
+          title: 'E-beregner',
+          tabBarIcon: ({color, focused}) => (
+            <Ionicons name={focused ? 'calculator-sharp' : 'calculator-outline'} color={color} size={24} />
           ),
         }}
       />
