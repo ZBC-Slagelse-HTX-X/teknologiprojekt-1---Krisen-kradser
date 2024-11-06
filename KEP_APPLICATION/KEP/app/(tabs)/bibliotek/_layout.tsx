@@ -1,11 +1,15 @@
 import { View, Text } from "react-native";
-import Bibliotek from "./bibliotek";
-  
-export default function BibliotekLayout() {
+import { Slot } from 'expo-router';
+import Header from "../../../components/bibliotek";
 
+export default function Layout() {
   return (
-      <View style={{flex:1, alignItems:"flex-start", backgroundColor: "#fefae0",}}>
-        <Bibliotek/>
+    <View style={{flex: 1, flexDirection:"row", alignItems: "flex-start", backgroundColor: "#fefae0"}}>
+      <Header />
+      
+      <View style={{flex: 1, width: "50%"}}>
+        <Slot />
+      </View>
     </View>
   );
 }

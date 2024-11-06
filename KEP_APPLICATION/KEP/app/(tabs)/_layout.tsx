@@ -1,8 +1,12 @@
-import { Tabs } from "expo-router";
+import { Tabs, router, usePathname } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
+import { Platform } from "react-native";
 
 
 export default function TabLayout() {
+  const backIcon = Platform.OS === "ios" ? "chevron-back" : "arrow-back-sharp";
+  const currentPath = usePathname();
+
   return (
     <Tabs
       screenOptions={{
@@ -32,7 +36,17 @@ export default function TabLayout() {
       <Tabs.Screen
         name="bibliotek"
         options={{
-          title: 'Bibliotek',
+          title: `Bibliotek`,
+          headerTitle: `${currentPath}`,
+          headerLeft: () => (
+            <Ionicons
+              style={{marginLeft:15, marginRight:-10}}
+              name={backIcon}
+              size={25}
+              color="#dda15e"
+              onPress={() => router.back()}
+            />
+          ),
           tabBarIcon: ({color, focused}) => (
             <Ionicons name={focused ? 'book-sharp' : 'book-outline'} color={color} size={24} />
           ),
@@ -43,6 +57,15 @@ export default function TabLayout() {
         name="e-beregner"
         options={{
           title: 'E-beregner',
+          headerLeft: () => (
+            <Ionicons
+              style={{marginLeft:15, marginRight:-10}}
+              name={backIcon}
+              size={25}
+              color="#dda15e"
+              onPress={() => router.back()}
+            />
+          ),
           tabBarIcon: ({color, focused}) => (
             <Ionicons name={focused ? 'calculator-sharp' : 'calculator-outline'} color={color} size={24} />
           ),
@@ -53,6 +76,15 @@ export default function TabLayout() {
         name="test_site"
         options={{ 
           title: 'TEST PAGE',
+          headerLeft: () => (
+            <Ionicons
+              style={{marginLeft:15, marginRight:-10}}
+              name={backIcon}
+              size={25}
+              color="#dda15e"
+              onPress={() => router.back()}
+            />
+          ),
           tabBarIcon: ({color, focused}) => (
             <Ionicons name={focused ? 'information-circle' : 'information-circle-outline'} color={color} size={24} />
           ),
