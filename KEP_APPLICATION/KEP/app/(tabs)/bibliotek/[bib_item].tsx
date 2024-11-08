@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, Image } from 'react-native';
 import {useLocalSearchParams, usePathname} from 'expo-router';
-
+import { useFont } from "@/components/fontContext";
 
 export default function BibItemScreen() {
     const { 
@@ -10,26 +10,29 @@ export default function BibItemScreen() {
         sub_name_01, sub_name_02, sub_name_03, sub_name_04,
 
     } = useLocalSearchParams();
+    
     const currentPath = usePathname()
+    const { dyslexiaMode } = useFont();
+    
     return (
     <View style={styles.container}>
         <View style={styles.containerChild}>
             <View style={styles.headingContainer}>
-                <Text style={styles.heading}>{ heading_01 }</Text>
-                <Text style={styles.subHeading}>{ sub_name_01 }</Text>
+                <Text style={[{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'},styles.heading]}>{ heading_01 }</Text>
+                <Text style={[{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'},styles.subHeading]}>{ sub_name_01 }</Text>
             </View>
             <View style={styles.textContainer}>
-                <Text>{text_01}</Text>
+                <Text style={{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'}}>{text_01}</Text>
             </View>
         </View>
 
         <View style={styles.containerChild}>
             <View style={styles.headingContainer}>
-                <Text style={styles.heading}>{ heading_02 }</Text>
-                <Text style={styles.subHeading}>{ sub_name_02 }</Text>
+                <Text style={[{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'},styles.heading]}>{ heading_02 }</Text>
+                <Text style={[{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'},styles.subHeading]}>{ sub_name_02 }</Text>
             </View>
             <View style={styles.textContainer}>
-                <Text>{text_02}</Text>
+                <Text style={{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'}}>{text_02}</Text>
             </View>
         </View>
         
@@ -42,21 +45,21 @@ export default function BibItemScreen() {
         
         <View style={styles.containerChild}>
             <View style={styles.headingContainer}>
-                <Text style={styles.heading}>{ heading_03 }</Text>
-                <Text style={styles.subHeading}>{ sub_name_03 }</Text>
+                <Text style={[{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'},styles.heading]}>{ heading_03 }</Text>
+                <Text style={[{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'},styles.subHeading]}>{ sub_name_03 }</Text>
             </View>
             <View style={styles.textContainer}>
-                <Text>{text_03}</Text>
+                <Text style={{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'}}>{text_03}</Text>
             </View>
         </View>
         
         <View style={styles.containerChild}>
             <View style={styles.headingContainer}>
-                <Text style={styles.heading}>{ heading_04 }</Text>
-                <Text style={styles.subHeading}>{ sub_name_04 }</Text>
+                <Text style={[{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'},styles.heading]}>{ heading_04 }</Text>
+                <Text style={[{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'},styles.subHeading]}>{ sub_name_04 }</Text>
             </View>
             <View style={styles.textContainer}>
-                <Text>{text_04}</Text>
+                <Text style={{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'}}>{text_04}</Text>
             </View>
         </View>
         

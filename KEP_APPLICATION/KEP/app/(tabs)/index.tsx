@@ -2,6 +2,7 @@ import React from "react";
 import { Text, View, StyleSheet, SectionList, StatusBar } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { Href, Link } from "expo-router";
+import { useFont } from "@/components/fontContext";
 
 const DATA = [
   {
@@ -23,23 +24,30 @@ const DATA = [
 
 
 export default function Index() {
-
+  const { dyslexiaMode } = useFont();
 
   return (
     <SafeAreaProvider style={styles.safeArea} >
       <SafeAreaView style={styles.container}>
-        <Text style={styles.text}>Krisemanual- og ernæringsberegningsprogram (KEP)</Text>
+        <Text style={[{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'}, styles.text]}>Krisemanual- og ernæringsberegningsprogram (KEP)</Text>
         
         <SectionList 
           sections={DATA}
           keyExtractor={(item, index) => item.name + item.url + index}
           renderItem={({ item }) => (
             <View>
-              <Link href={item.url as Href<string>} style={styles.linkStyle}>{item.name}</Link>
+              <Link 
+                href={item.url as Href<string>} 
+                style={[{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'},styles.linkStyle]}>
+                {item.name}
+              </Link>
             </View>
           )}
           renderSectionHeader={({section: {title}}) => (
-            <Text style={styles.ListHeader}>{title}</Text>
+            <Text 
+              style={[{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'},styles.ListHeader]}>
+              {title}
+            </Text>
           )}
         />
       </SafeAreaView>

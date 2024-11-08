@@ -4,11 +4,13 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { Href, Link } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import DATA from "@/data/bibliotek_data.json"; 
+import { useFont } from "@/components/fontContext";
 
 
   export default function Bibliotek() {
     console.log("Bibliotek component is rendering"); // Check if component is loading
-    
+    const { dyslexiaMode } = useFont();
+
       return (
             <View style={styles.container}>
               <SectionList 
@@ -37,11 +39,11 @@ import DATA from "@/data/bibliotek_data.json";
                             sub_name_04:item.sub_name_04,
                           }
                         }} 
-                        style={styles.linkStyle}
+                        style={[{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'},styles.linkStyle]}
                       >
                         <View style={styles.StarIconContainer}>
                           <Ionicons name={"star-outline"} style={styles.StarIcon}/> 
-                          <Text style={styles.SectionHeaderText}>
+                          <Text style={[{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'},styles.SectionHeaderText]}>
                             {item.name}
                           </Text>
                         </View>
@@ -57,7 +59,7 @@ import DATA from "@/data/bibliotek_data.json";
                               sub_name_01:item.sub_name_01,
                             }
                           }} 
-                          style={styles.SubLinkStyle}>
+                          style={[{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'},styles.SubLinkStyle]}>
                           {item.sub_name_display}
                         </Link>
                       </View>
@@ -65,7 +67,7 @@ import DATA from "@/data/bibliotek_data.json";
                   </View>
                 )}
                 renderSectionHeader={({section: {title}}) => (
-                  <Text style={styles.ListHeader}>{title}</Text>
+                  <Text style={[{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'},styles.ListHeader]}>{title}</Text>
                 )}
                 renderSectionFooter={(item) => (
                 <View style={styles.SectionListFooter}></View> 

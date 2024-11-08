@@ -4,11 +4,11 @@ import React, {useState} from 'react';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
-
+import { useFont } from "@/components/fontContext";
 
 export default function Indstillinger() {
-  const [dyslexiaMode, setDyslexiaMode] = useState(false);
-  const toggleSwitch = () => setDyslexiaMode(previousState => !previousState)
+  const {dyslexiaMode, setDyslexiaMode} = useFont();
+  const toggleSwitch = () => setDyslexiaMode(prevState => !prevState)
     
   const [loaded, error] = useFonts({
     'open-dyslexic': require('@/assets/fonts/open-dyslexic.ttf'),

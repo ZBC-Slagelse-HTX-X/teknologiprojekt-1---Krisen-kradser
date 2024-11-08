@@ -1,11 +1,13 @@
 import { Tabs, router, usePathname } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { Platform } from "react-native";
+import { useFont } from "@/components/fontContext";
 
 
 export default function TabLayout() {
   const backIcon = Platform.OS === "ios" ? "chevron-back" : "arrow-back-sharp";
   const currentPath = usePathname();
+  const { dyslexiaMode } = useFont();
 
   return (
     <Tabs
@@ -19,8 +21,13 @@ export default function TabLayout() {
         headerTintColor: "#dda15e", // Header font color
         tabBarStyle: { 
           backgroundColor: "#606c38", // Tab bar background color
+        },
+        headerTitleStyle: { // Header title style
+          fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System',
+        },
+        tabBarLabelStyle: { // Tab bar bottom title style
+          fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System',
         }
-
       }}
     >
       <Tabs.Screen

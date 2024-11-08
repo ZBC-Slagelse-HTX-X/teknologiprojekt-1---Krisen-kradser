@@ -1,6 +1,7 @@
 import { Stack } from "expo-router";
 import { Platform } from "react-native";
 import * as ScreenOrientation from 'expo-screen-orientation';
+import { FontProvider } from "@/components/fontContext";
 
 
 export default function RootLayout() {
@@ -9,6 +10,8 @@ export default function RootLayout() {
   }
 
   return (
+    <FontProvider>
+
       <Stack>
 
         <Stack.Screen 
@@ -16,9 +19,10 @@ export default function RootLayout() {
           options={{ 
             headerShown: false 
           }} 
-        />
+          />
 
         <Stack.Screen name="+not-found"/>
       </Stack>
+    </FontProvider>
   );
 }
