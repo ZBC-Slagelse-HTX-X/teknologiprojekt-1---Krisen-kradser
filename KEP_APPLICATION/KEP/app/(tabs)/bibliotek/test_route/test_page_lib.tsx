@@ -25,5 +25,6 @@ const styles = StyleSheet.create({
     test_page_lib_main_view: {
         width: 500,
         height: 500,
+        margin: 10,
     }
 })

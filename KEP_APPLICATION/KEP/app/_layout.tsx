@@ -1,11 +1,13 @@
 import { Stack } from "expo-router";
-
+import { Platform } from "react-native";
 import * as ScreenOrientation from 'expo-screen-orientation';
 
 
 
 export default function RootLayout() {
-  ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE)
+  if (Platform.OS == "ios" || Platform.OS == "android" ) {
+    ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE)
+  }
   return (
     <Stack>
 

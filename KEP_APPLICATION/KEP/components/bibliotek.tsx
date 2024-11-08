@@ -1,144 +1,19 @@
-  import React from "react";
-  import { Text, View, StyleSheet, SectionList, StatusBar } from "react-native";
-  import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-  import { Href, Link } from "expo-router";
-  import { Ionicons } from "@expo/vector-icons";
-
-
-  const DATA = [
-    {
-      title: "Overlevelse kap 1",
-      data: [
-        {
-          name: "Shelter 01",
-          sub_name_display:"Shelter Tarp MTS!",  
-          sub_name_01:"Shelter Del 1",
-          sub_name_02:"",
-          sub_name_03:"Shelter Del 2",
-          sub_name_04:"Shelter Del 3",
-          id:"primitiv_shelter",
-          sub_id:"primitiv_shelter_sub",
-          heading_01: "Primitiv Shelter 1",
-          heading_02: "",
-          heading_03: "Primitiv Shelter 2",
-          heading_04: "Primitiv Shelter 3",
-          text_01: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure.",
-          text_02: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-          text_03: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-          text_04: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla.",
-        },
-
-        {
-          name: "Shelter 02", 
-          sub_name_display:"Shelter Blad Grøn!", 
-          id:"primitiv_shelter_easy",
-          sub_id:"primitiv_shelter_easy_sub",
-          heading_01: "Nemme primitive sheltere!",
-          text_01: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        },
-        {
-          name: "Shelter 03", 
-          sub_name_display:"Shelter Tarp Blå!", 
-          id:"primitiv_shelter_hard", 
-          sub_id:"primitiv_shelter_sub",
-          heading_01: "Shelter Sne!",
-          text_01: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        },
-      ],
-    },
-    {
-      title: "Overlevelse kap 2",
-      data: [
-                {
-          name: "Shelter 01", 
-          sub_name_display:"Shelter Tarp MTS!", 
-          id:"primativ_shelter", 
-          sub_id:"primative_shelter_sub",
-          heading_01: "Primativ shelter!",
-          text_01: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        },
-                {
-          name: "Shelter 01", 
-          sub_name_display:"Shelter Tarp MTS!", 
-          id:"primativ_shelter", 
-          sub_id:"primative_shelter_sub",
-          heading_01: "Primativ shelter!",
-          text_01: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        },
-                {
-          name: "Shelter 01", 
-          sub_name_display:"Shelter Tarp MTS!", 
-          id:"primativ_shelter", 
-          sub_id:"primative_shelter_sub",
-          heading_01: "Primativ shelter!",
-          text_01: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        },
-                {
-          name: "Shelter 01", 
-          sub_name_display:"Shelter Tarp MTS!", 
-          id:"primativ_shelter", 
-          sub_id:"primative_shelter_sub",
-          heading_01: "Primativ shelter!",
-          text_01: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        },
-                {
-          name: "Shelter 01", 
-          sub_name_display:"Shelter Tarp MTS!", 
-          id:"primativ_shelter", 
-          sub_id:"primative_shelter_sub",
-          heading_01: "Primativ shelter!",
-          text_01: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        },
-                {
-          name: "Shelter 01", 
-          sub_name_display:"Shelter Tarp MTS!", 
-          id:"primativ_shelter", 
-          sub_id:"primative_shelter_sub",
-          heading_01: "Primativ shelter!",
-          text_01: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        },
-      ],
-    },
-    {
-      title: "Overlevelse kap 3",
-      data: [
-                {
-          name:"Shelter 01", 
-          sub_name_display:"Shelter Tarp MTS!", 
-          id:"primativ_shelter", 
-          sub_id:"primative_shelter_sub",
-          heading_01: "Primativ shelter!",
-          text_01: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        },
-                {
-          name: "Shelter 01", 
-          sub_name_display:"Shelter Tarp MTS!", 
-          id:"primativ_shelter", 
-          sub_id:"primative_shelter_sub",
-          heading_01: "Primativ shelter!",
-          text_01: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        },
-                {
-          name: "Shelter 01", 
-          sub_name_display:"Shelter Tarp MTS!", 
-          id:"primativ_shelter", 
-          sub_id:"primative_shelter_sub",
-          heading_01: "Primativ shelter!",
-          text_01: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        },
-      ],
-    },
-  ];
+import React from "react";
+import { Text, View, StyleSheet, SectionList, StatusBar } from "react-native";
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { Href, Link } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
+import DATA from "@/data/bibliotek_data.json"; 
 
 
   export default function Bibliotek() {
     console.log("Bibliotek component is rendering"); // Check if component is loading
-
+    
       return (
             <View style={styles.container}>
               <SectionList 
                 style={styles.SectionList}
-                sections={DATA}
+                sections={DATA.DATA}
                 keyExtractor={(item, index) => item.name + item.sub_name_display + index}
                 renderItem={({ item }) => (
                   <View style={styles.SectionListItem}>
@@ -251,9 +126,8 @@
       StarIconContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         width: '100%',
-        marginHorizontal: 10,
       },
       SectionHeaderText: {
         color:"#DDA15E", 
