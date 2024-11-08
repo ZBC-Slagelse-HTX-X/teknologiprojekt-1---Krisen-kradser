@@ -1,12 +1,13 @@
 import { usePathname, Link } from "expo-router";
 import { View, Text, StyleSheet } from "react-native";
 
-  
+
 export default function Test_page_lib() {
-const currentPath = usePathname()
+  const currentPath = usePathname()
+
   return (
     <View style={styles.test_page_lib_main_view}>
-        <Text>Hello, World! {"\n"}</Text>
+        <Text style={styles.header}>Hello, World! {"\n"}</Text>
         <Text style={{fontSize:18}}>currentPath: {currentPath}</Text>
         <Link 
           href={{
@@ -26,5 +27,8 @@ const styles = StyleSheet.create({
         width: 500,
         height: 500,
         margin: 10,
+    },
+    header: {
+      fontSize: 25
     }
 })

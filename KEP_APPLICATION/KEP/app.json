@@ -28,7 +28,8 @@
     },
     "plugins": [
       "expo-router",
-      "expo-screen-orientation"
+      "expo-screen-orientation",
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true

@@ -73,9 +73,9 @@ export default function TabLayout() {
       />
       
       <Tabs.Screen 
-        name="test_site"
+        name="indstillinger"
         options={{ 
-          title: 'TEST PAGE',
+          title: 'Indstillinger',
           headerLeft: () => (
             <Ionicons
               style={{marginLeft:15, marginRight:-10}}
@@ -86,7 +86,7 @@ export default function TabLayout() {
             />
           ),
           tabBarIcon: ({color, focused}) => (
-            <Ionicons name={focused ? 'information-circle' : 'information-circle-outline'} color={color} size={24} />
+            <Ionicons name={focused ? 'settings-sharp' : 'settings-outline'} color={color} size={24} />
           ),
         }} 
       />

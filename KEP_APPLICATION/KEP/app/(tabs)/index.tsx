@@ -42,10 +42,6 @@ export default function Index() {
             <Text style={styles.ListHeader}>{title}</Text>
           )}
         />
-
-        <Link href="/test_site" style={styles.button}>
-          Gå til 'TEST PAGE'
-        </Link>
       </SafeAreaView>
     </SafeAreaProvider>
   );
@@ -65,7 +61,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "flex-start",
-    backgroundColor: "#fefae0",
+    backgroundColor: "#222b00",
     padding: 25,
   },
   container: {
