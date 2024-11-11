@@ -12,8 +12,7 @@ export default function Layout() {
   return (
     <View style={{
       flex: 1, 
-      flexDirection:"row", 
-      alignItems: "flex-start", 
+      flexDirection:"row",  
       backgroundColor: currentTheme.bibBackground
     }}>
       <Header />

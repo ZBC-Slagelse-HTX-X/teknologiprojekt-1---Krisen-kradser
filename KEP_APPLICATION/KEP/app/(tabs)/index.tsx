@@ -1,27 +1,59 @@
 import React from "react";
-import { Text, View, StyleSheet, SectionList, StatusBar } from "react-native";
+import { useState } from "react";
+import { Text, View, StyleSheet, SectionList, Pressable } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { Href, Link } from "expo-router";
+import { Link } from "expo-router";
 import { useFont } from "@/components/fontContext";
 import { useTheme } from "@/components/themeContext";
 import { normalTheme, colorBlindTheme } from "@/constants/themes";
 import DATA from '@/data/grej_data.json';
-import { Ionicons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+
+
+type CheckBoxProps = {
+  isChecked: boolean;
+  onPress: () => void;
+};
+
+const CheckBox: React.FC<CheckBoxProps> = ({ isChecked, onPress }) => {
+  const iconName = isChecked ? "checkbox-marked" : "checkbox-blank-outline";
+  return (
+    <Pressable onPress={onPress} style={styles.checkBox}>
+      <MaterialCommunityIcons name={iconName} size={24} color="#000" />
+    </Pressable>
+  );
+};
+
 
 
 export default function Index() {
   const { dyslexiaMode } = useFont();
   const { theme } = useTheme();
   const currentTheme = theme === 'normal' ? colorBlindTheme:normalTheme;
+  
+  const [checkedItems, setCheckedItems] = useState<{ [key: string]: boolean }>({});
+
+  const toggleCheckbox = (id: string) => {
+    setCheckedItems(prev => ({ ...prev, [id]: !prev[id] }));
+  };
+
 
   return (
     <SafeAreaProvider style={[
-      styles.safeArea,
-      { backgroundColor: currentTheme.bibBackground }
+      { backgroundColor: currentTheme.bibBackground },
+      { flex:1 }
     ]}>
-      <SafeAreaView>
-        <Text style={[{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'}, styles.text]}>Krisemanual- og ernæringsberegningsprogram (KEP)</Text>
-        
+      <SafeAreaView style={{ flex:1, flexDirection: "row" }}>
+      <View style={{flex:1}}>
+        <Text style={[
+            {fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'}, 
+            styles.text,
+            { color: currentTheme.fontColor }
+            ]}>
+            Krisemanual- og ernæringsberegningsprogram (KEP)
+        </Text>
+      </View>
+
         <View style={styles.container}>
           <Text style={{fontSize:25, fontWeight: 600}}>Grej Vi Anbefaler</Text>
           <SectionList
@@ -31,21 +63,7 @@ export default function Index() {
             renderItem={({ item }) => (
               <View style={styles.SectionListItem}>
                 <View>
-                  <Link 
-                    href={{
-                      pathname: '../hjem/[bib_item]',
-                      params: { 
-                        id: item.id, 
-                        heading_01:item.heading_01,
-                        heading_02:item.heading_02,
-                        heading_03:item.heading_03,
-                        heading_04:item.heading_04,
-                        text_01:item.text_01,
-                        text_02:item.text_02,
-                        text_03:item.text_03,
-                        text_04:item.text_04,
-                      }
-                    }} 
+                  <Text 
                     style={[
                       { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
                       styles.linkStyle,
@@ -53,16 +71,25 @@ export default function Index() {
                     ]}
                   >
                     <View style={styles.iconOuterContainer}>
-                      <View style={styles.iconContainer}><Text style={styles.iconContainerText}>A</Text></View>
+                      <View style={styles.iconContainer}>
+                        <Text style={[
+                          styles.iconContainerText,
+                          { color: currentTheme.grejIconColor}
+                          ]}>A</Text>
+                      </View>
                       <Text style={[
                         { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
                         styles.SectionHeaderText,
                         { color: currentTheme.grejLinkStyle }
                       ]}>
                         {item.name}
+                        <CheckBox
+                          isChecked={!!checkedItems[item.id]}
+                          onPress={() => toggleCheckbox(item.id)}
+                        />
                       </Text>
                     </View>
-                  </Link>
+                  </Text>
                 </View>
               </View>
             )}
@@ -85,7 +112,6 @@ const styles = StyleSheet.create({
   SectionList: {
     width: "100%",
     margin: 10,
-    height:"100%",
   },
   ListHeader: {
     fontSize: 30,
@@ -96,16 +122,7 @@ const styles = StyleSheet.create({
     width: '50%',
     height: '100%',
   },
-  safeArea: {
-    // flex: 1,
-    // justifyContent: "center",
-    // alignItems: "flex-start",
-    // backgroundColor: "#222b00",½
-    // padding: 25,
-  },
   container: {
-    position: "absolute",
-    right:0,
     flex: 1,
     width: "35%",
     padding:10,
@@ -159,5 +176,14 @@ const styles = StyleSheet.create({
   iconContainerText: {
     fontSize: 14,
     fontWeight: 800,
-  }
+  },
+  checkBox: {
+    justifyContent: "flex-end",
+    alignItems: "center",
+    flexDirection: "row",
+    width: 150,
+    marginTop: 5,
+    marginHorizontal: 5,
+  },
+  
 })

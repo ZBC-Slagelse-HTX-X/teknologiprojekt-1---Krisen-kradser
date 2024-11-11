@@ -8,6 +8,7 @@ export const normalTheme = {
     bibLinkStyle: "#DDA15E",
     bibBackground: "#fefae0",
     grejLinkStyle: "#000",
+    grejIconColor: "#ac9f0d",
 }
 
 export const colorBlindTheme = {
@@ -20,4 +21,5 @@ export const colorBlindTheme = {
     bibLinkStyle: "#000",
     bibBackground: "#fff",
     grejLinkStyle: "#000",
+    grejIconColor: "#fff",
 }
