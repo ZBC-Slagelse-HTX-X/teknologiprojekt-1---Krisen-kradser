@@ -1,18 +1,24 @@
 import { Text, View, StyleSheet, Switch, Platform } from "react-native";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import React, {useState} from 'react';
+import React, { useEffect } from 'react';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
 import { useFont } from "@/components/fontContext";
+import { useTheme } from "@/components/themeContext";
+import { normalTheme, colorBlindTheme } from "@/constants/themes";
 
 export default function Indstillinger() {
-  const {dyslexiaMode, setDyslexiaMode} = useFont();
-  const toggleSwitch = () => setDyslexiaMode(prevState => !prevState)
-    
+  const { dyslexiaMode, setDyslexiaMode } = useFont();
+  const toggleSwitch = () => setDyslexiaMode(!dyslexiaMode);
+  // const toggleSwitch = () => setDyslexiaMode((prevState: boolean) => !prevState);
+
   const [loaded, error] = useFonts({
     'open-dyslexic': require('@/assets/fonts/open-dyslexic.ttf'),
   });
+
+  const { theme, toggleTheme } = useTheme();
+  const toggleThemeSwitch = () => toggleTheme();
+  const currentTheme = theme === 'normal' ? colorBlindTheme:normalTheme;
 
   useEffect(() => {
     if (loaded || error) {
@@ -25,62 +31,97 @@ export default function Indstillinger() {
   }
 
   return (
-        <SafeAreaProvider style={styles.safeArea}>
-            <View style={styles.container}>
-                <Text style={[{ fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }, styles.header]}>Indstillinger</Text>
-                
-                <View style={styles.settingsInnerContainer}>
-                  <Text style={[{ fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },styles.text]}>dysleksi-tilstand</Text>
-                  <Switch
-                    trackColor={{ false: 'grey', true: '#1e90ff' }}
-                    thumbColor={ dyslexiaMode ? '#f5dd4b' : undefined }
-                    {...Platform.select({
-                      web: {
-                        activeThumbColor: "white"
-                      },
-                      default: {}
-                    })}
-                    onValueChange={toggleSwitch}
-                    value={dyslexiaMode}
-                  />
-                </View>
-            </View>
-        </SafeAreaProvider>
-    );
+    <SafeAreaProvider style={[styles.safeArea, {backgroundColor: currentTheme.background}]}>
+      <View style={styles.container}>
+        <Text 
+          style={[
+            { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }, 
+            styles.header,
+            { color: currentTheme.fontColor }
+          ]}>
+            Indstillinger
+        </Text>
+
+        <View style={styles.settingsInnerContainer}>
+          <Text style={[
+            { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }, 
+            styles.text,
+            { color: currentTheme.fontColor }
+          ]}>
+            Ordblindhedstilstand
+          </Text>
+          
+          <Switch
+            trackColor={{ false: 'grey', true: '#1e90ff' }}
+            thumbColor={dyslexiaMode ? '#f5dd4b' : undefined}
+            {...Platform.select({
+              web: {
+                activeThumbColor: "white"
+              },
+              default: {}
+            })}
+            onValueChange={toggleSwitch}
+            value={dyslexiaMode}
+          />
+        </View>
+        
+        <View style={styles.settingsInnerContainer}>
+          <Text style={[
+            { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }, 
+            styles.text,
+            { color: currentTheme.fontColor }
+            ]}>
+            Farveblindhedstilstand
+          </Text>
+          <Switch
+            trackColor={{ false: 'grey', true: '#1e90ff' }}
+            thumbColor={theme ? undefined : "#f5dd4b"}
+            {...Platform.select({
+              web: {
+                activeThumbColor: "white"
+              },
+              default: {}
+            })}
+            onValueChange={toggleThemeSwitch}
+            value={theme === 'normal'}
+          />
+        </View>
+        
+
+      </View>
+    </SafeAreaProvider>
+  );
 }
+
 const styles = StyleSheet.create({
-    safeArea: {
-      flex: 1,
-      justifyContent: "center",
-      alignItems: "center",
-      backgroundColor: "#222b00",
-      height:"100%",
-    },
-    container: {
-      width: "25%",
-      // backgroundColor: "#fff",
-      flex: 1,
-      alignItems: "center",
-      justifyContent: "flex-start",
-      marginTop: 20,
-    },
-    text: {
-      color: '#ac9f0d',
-      fontSize:18,
-    },
-    header: {
-      fontSize:28,
-      color: '#ac9f0d',
-    },
-    settingsInnerContainer: {
-      width: "100%",
-      height: 50,
-      // backgroundColor:"#fff",
-      justifyContent:"space-between",
-      alignItems:"center",
-      flexDirection:"row",
-      borderBottomWidth: 1,
-      borderColor: "#333",
-      padding:10,
-    },
-    })
+  safeArea: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    // backgroundColor: "#222b00",
+    height: "100%",
+  },
+  container: {
+    width: "25%",
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "flex-start",
+    marginTop: 20,
+  },
+  text: {
+    fontSize: 18,
+  },
+  header: {
+    fontSize: 28,
+  },
+  settingsInnerContainer: {
+    width: "100%",
+    height: 50,
+    justifyContent: "space-between",
+    alignItems: "center",
+    flexDirection: "row",
+    borderBottomWidth: 1,
+    borderColor: "#333",
+    padding: 10,
+  },
+});

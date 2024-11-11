@@ -5,12 +5,16 @@ import { Href, Link } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import DATA from "@/data/bibliotek_data.json"; 
 import { useFont } from "@/components/fontContext";
+import { useTheme } from "@/components/themeContext";
+import { normalTheme, colorBlindTheme } from "@/constants/themes";
 
 
   export default function Bibliotek() {
     console.log("Bibliotek component is rendering"); // Check if component is loading
     const { dyslexiaMode } = useFont();
-
+    const { theme } = useTheme();
+    const currentTheme = theme === 'normal' ? colorBlindTheme:normalTheme;
+  
       return (
             <View style={styles.container}>
               <SectionList 
@@ -39,11 +43,24 @@ import { useFont } from "@/components/fontContext";
                             sub_name_04:item.sub_name_04,
                           }
                         }} 
-                        style={[{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'},styles.linkStyle]}
+                        style={[
+                          { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                          styles.linkStyle,
+                          { color: currentTheme.bibLinkStyle }
+                        ]}
                       >
                         <View style={styles.StarIconContainer}>
-                          <Ionicons name={"star-outline"} style={styles.StarIcon}/> 
-                          <Text style={[{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'},styles.SectionHeaderText]}>
+                          <Ionicons 
+                            name={"star-outline"} 
+                            style={[
+                              styles.StarIcon,
+                              { color: currentTheme.bibLinkStyle }
+                          ]}/> 
+                          <Text style={[
+                            { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                            styles.SectionHeaderText,
+                            { color: currentTheme.bibLinkStyle }
+                          ]}>
                             {item.name}
                           </Text>
                         </View>
@@ -59,7 +76,11 @@ import { useFont } from "@/components/fontContext";
                               sub_name_01:item.sub_name_01,
                             }
                           }} 
-                          style={[{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'},styles.SubLinkStyle]}>
+                          style={[
+                            {fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'},
+                            styles.SubLinkStyle,
+                            { color: currentTheme.bibLinkStyle }
+                          ]}>
                           {item.sub_name_display}
                         </Link>
                       </View>
@@ -104,7 +125,6 @@ import { useFont } from "@/components/fontContext";
         fontSize: 18,
         margin: 2,
         marginTop:8,
-        color: "#DDA15E",
         alignItems: 'center',
       },
       SubLinkStyle: {
@@ -132,7 +152,6 @@ import { useFont } from "@/components/fontContext";
         width: '100%',
       },
       SectionHeaderText: {
-        color:"#DDA15E", 
         marginLeft:8,
         fontSize:18,
       },

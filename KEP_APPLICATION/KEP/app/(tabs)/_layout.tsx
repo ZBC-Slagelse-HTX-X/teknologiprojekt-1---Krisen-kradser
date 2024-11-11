@@ -2,25 +2,29 @@ import { Tabs, router, usePathname } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { Platform } from "react-native";
 import { useFont } from "@/components/fontContext";
-
+import { useTheme } from "@/components/themeContext";
+import { normalTheme, colorBlindTheme } from "@/constants/themes";
 
 export default function TabLayout() {
   const backIcon = Platform.OS === "ios" ? "chevron-back" : "arrow-back-sharp";
   const currentPath = usePathname();
   const { dyslexiaMode } = useFont();
 
+  const { theme } = useTheme();
+  const currentTheme = theme === 'normal' ? colorBlindTheme:normalTheme;
+
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: '#dda15e', // Tab bar icon and text color
-        tabBarInactiveTintColor: '#dda15e',
+        tabBarActiveTintColor: currentTheme.tabBarActiveTintColor, // Tab bar icon and text color
+        tabBarInactiveTintColor: currentTheme.tabBarInactiveTintColor,
         headerStyle: {
-          backgroundColor: '#283618', // Header bacground color
+          backgroundColor: currentTheme.headerColor , // Header bacground color
         },
         headerShadowVisible: false,
-        headerTintColor: "#dda15e", // Header font color
+        headerTintColor: currentTheme.fontColor, // Header font color
         tabBarStyle: { 
-          backgroundColor: "#606c38", // Tab bar background color
+          backgroundColor: currentTheme.headerColor, // Tab bar background color
         },
         headerTitleStyle: { // Header title style
           fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System',
@@ -50,7 +54,7 @@ export default function TabLayout() {
               style={{marginLeft:15, marginRight:-10}}
               name={backIcon}
               size={25}
-              color="#dda15e"
+              color={`${currentTheme.arrowIconColor}`}
               onPress={() => router.back()}
             />
           ),
@@ -69,7 +73,7 @@ export default function TabLayout() {
               style={{marginLeft:15, marginRight:-10}}
               name={backIcon}
               size={25}
-              color="#dda15e"
+              color={`${currentTheme.arrowIconColor}`}
               onPress={() => router.back()}
             />
           ),
@@ -88,7 +92,7 @@ export default function TabLayout() {
               style={{marginLeft:15, marginRight:-10}}
               name={backIcon}
               size={25}
-              color="#dda15e"
+              color={`${currentTheme.arrowIconColor}`}
               onPress={() => router.back()}
             />
           ),

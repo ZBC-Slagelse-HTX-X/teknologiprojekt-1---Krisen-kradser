@@ -23,7 +23,6 @@
     },
     "web": {
       "bundler": "metro",
-      "output": "static",
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
@@ -38,6 +37,7 @@
       "eas": {
         "projectId": "10697494-f077-4574-be2a-ee0f7f943f8c"
       }
-    }
+    },
+    "runtimeVersion": "1.0.0"
   }
 }
