@@ -17,7 +17,6 @@ export default function Test_page_lib() {
         >
           TEST
         </Link>
-    
     </View>
   );
 }
