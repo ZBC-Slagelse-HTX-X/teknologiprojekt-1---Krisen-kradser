@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Dimensions,ScrollView, Pressable } from 'react-native';
+
 
 const App: React.FC = () => {
   // Define types for state
@@ -72,7 +73,7 @@ const App: React.FC = () => {
     </View>
   )}
     <View style={styles.container}>
-      <View style={styles.innerContainer}>
+      <ScrollView style={styles.innerContainer}>
         <View style={styles.inputContainer}>
           <Text style={styles.inputContainerLabel}>Navn</Text>
           <TextInput
@@ -136,9 +137,11 @@ const App: React.FC = () => {
             value={state.restriktioner_1}
             placeholder="0 - 5"
             />
-          <Button title="Calculate" onPress={handleCalculate} />
+          <Pressable style={styles.buttonStyle} onPress={handleCalculate} >
+            <Text style={{color: "#fff", fontWeight: 800}}>Calculate</Text>
+          </Pressable>
         </View>
-      </View>
+      </ScrollView>
       
       <View style={styles.innerContainer}>
 
@@ -171,7 +174,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     borderColor: "#DCDCDC",
     borderWidth: 1,
-    width: 400,
+    width: 250,
     height:  (Dimensions.get("window").height) * 0.8,
     margin: 5,
     padding: 10,
@@ -202,6 +205,13 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     height:  (Dimensions.get("window").height) * 0.25,
     width:  (Dimensions.get("window").width) * 0.25,
+  },
+  buttonStyle: {
+    backgroundColor: '#0000FF',
+    padding: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 8,
   }
 });
 
