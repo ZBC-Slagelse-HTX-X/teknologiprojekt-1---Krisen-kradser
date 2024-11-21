@@ -36,13 +36,13 @@ export default function BibItemScreen() {
             </View>
         </View>
         
-        <View style={styles.containerChild}>
+        {/* <View style={styles.containerChild}>
             <Image 
                 style={{width:"100%", height:"100%"}}
                 source={require('@/assets/images/icon.png')}
             />
         </View>
-        
+         */}
         <View style={styles.containerChild}>
             <View style={styles.headingContainer}>
                 <Text style={[{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'},styles.heading]}>{ heading_03 }</Text>
@@ -63,12 +63,12 @@ export default function BibItemScreen() {
             </View>
         </View>
         
-        <View style={styles.containerChild}>
+        {/* <View style={styles.containerChild}>
             <Image 
                 style={{width:"100%", height:"100%"}}
                 source={require('@/assets/images/icon.png')}
             />
-        </View>
+        </View> */}
     </View>
     );
 }
@@ -78,15 +78,15 @@ const styles = StyleSheet.create({
     container: {
         flex:1,
         flexWrap:"wrap",
-        flexDirection:"row",
+        flexDirection: "column",
         margin:10,
         marginLeft:0,
-        width:"100%",
+        width:"50%",
         height:100,
         justifyContent:"center",
     },
     containerChild: {
-        width: "30%",
+        // width: "33%",
         // backgroundColor: "#fff",
         margin:10,
         height:"45%",
