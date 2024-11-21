@@ -44,7 +44,7 @@ const App: React.FC = () => {
   };
 
   const handleCalculate = () => {
-    if (state.alder && state.hoejde && state.vaegt && state.koen && state.aktivitetsniveau && state.restriktioner) {
+    if (state.alder && state.hoejde && state.vaegt && state.koen && state.aktivitetsniveau) {
       if (state.koen.toLowerCase() == "mand") {
         const bmr = (10 * parseFloat(state.vaegt)) + (6.25 * parseFloat(state.hoejde)) - (5 * parseFloat(state.alder)) + 5;
         const maintenanceCalories = Math.ceil((bmr * parseFloat(state.aktivitetsniveau)));
@@ -138,8 +138,8 @@ const App: React.FC = () => {
                     style={[styles.pickerModal, {backgroundColor: ''}]}
                     itemStyle={[{color: 'black'}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}
                   >
-                    <Picker.Item label="Mand" value="Mand" style={{color:"#000"}}/>
                     <Picker.Item label="Kvinde" value="Kvinde" />
+                    <Picker.Item label="Mand" value="Mand" style={{color:"#000"}}/>
                   </Picker>
                 </View>
               </Modal>
@@ -152,8 +152,8 @@ const App: React.FC = () => {
               onValueChange={(itemValue) => handleInputChange('koen', itemValue)}
               itemStyle={[{color: 'black'}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}
             >
-              <Picker.Item label="Mand" value="mand" />
-              <Picker.Item label="Kvinde" value="kvinde" />
+              <Picker.Item label="Mand" value="Mand" />
+              <Picker.Item label="Kvinde" value="Kvinde" />
             </Picker>
             )
           }
@@ -192,9 +192,9 @@ const App: React.FC = () => {
             ): 
             (
             <Picker
-              selectedValue={state.koen}
+              selectedValue={state.aktivitetsniveau}
               style={styles.input}
-              onValueChange={(itemValue) => handleInputChange('koen', itemValue)}
+              onValueChange={(itemValue) => handleInputChange('aktivitetsniveau', itemValue)}
               itemStyle={[{color: 'black'}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}
             >
               <Picker.Item label="Lidt aktiv" value="1.2" />
@@ -208,7 +208,7 @@ const App: React.FC = () => {
           
           
           
-          <Text style={[styles.inputContainerLabel, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Kostrestriktioner<Text style={{color: currentTheme.redBlack}}>*</Text></Text>
+          <Text style={[styles.inputContainerLabel, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Kostrestriktioner</Text>
           <TextInput
             keyboardType="numeric"
             style={[styles.input, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}

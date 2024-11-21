@@ -70,10 +70,19 @@ import { normalTheme, colorBlindTheme } from "@/constants/themes";
                         <Link href={{
                             pathname: '../../bibliotek/[bib_item]',
                             params: { 
-                              id: item.sub_id,
+                              id: item.id, 
                               heading_01:item.heading_01,
+                              heading_02:item.heading_02,
+                              heading_03:item.heading_03,
+                              heading_04:item.heading_04,
                               text_01:item.text_01,
+                              text_02:item.text_02,
+                              text_03:item.text_03,
+                              text_04:item.text_04,
                               sub_name_01:item.sub_name_01,
+                              sub_name_02:item.sub_name_02,
+                              sub_name_03:item.sub_name_03,
+                              sub_name_04:item.sub_name_04,
                             }
                           }} 
                           style={[

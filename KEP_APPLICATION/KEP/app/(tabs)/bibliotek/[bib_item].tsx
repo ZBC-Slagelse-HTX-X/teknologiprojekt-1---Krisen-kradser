@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 import {useLocalSearchParams, usePathname} from 'expo-router';
 import { useFont } from "@/components/fontContext";
 
@@ -16,7 +16,7 @@ export default function BibItemScreen() {
     
     return (
     <View style={styles.container}>
-        <View style={styles.containerChild}>
+        <ScrollView style={styles.containerChild}>
             <View style={styles.headingContainer}>
                 <Text style={[{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'},styles.heading]}>{ heading_01 }</Text>
                 <Text style={[{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'},styles.subHeading]}>{ sub_name_01 }</Text>
@@ -24,9 +24,9 @@ export default function BibItemScreen() {
             <View style={styles.textContainer}>
                 <Text style={{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'}}>{text_01}</Text>
             </View>
-        </View>
+        </ScrollView>
 
-        <View style={styles.containerChild}>
+        <ScrollView style={styles.containerChild}>
             <View style={styles.headingContainer}>
                 <Text style={[{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'},styles.heading]}>{ heading_02 }</Text>
                 <Text style={[{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'},styles.subHeading]}>{ sub_name_02 }</Text>
@@ -34,7 +34,7 @@ export default function BibItemScreen() {
             <View style={styles.textContainer}>
                 <Text style={{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'}}>{text_02}</Text>
             </View>
-        </View>
+        </ScrollView>
         
         {/* <View style={styles.containerChild}>
             <Image 
@@ -43,7 +43,7 @@ export default function BibItemScreen() {
             />
         </View>
          */}
-        <View style={styles.containerChild}>
+        <ScrollView style={styles.containerChild}>
             <View style={styles.headingContainer}>
                 <Text style={[{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'},styles.heading]}>{ heading_03 }</Text>
                 <Text style={[{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'},styles.subHeading]}>{ sub_name_03 }</Text>
@@ -51,9 +51,9 @@ export default function BibItemScreen() {
             <View style={styles.textContainer}>
                 <Text style={{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'}}>{text_03}</Text>
             </View>
-        </View>
+        </ScrollView>
         
-        <View style={styles.containerChild}>
+        <ScrollView style={styles.containerChild}>
             <View style={styles.headingContainer}>
                 <Text style={[{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'},styles.heading]}>{ heading_04 }</Text>
                 <Text style={[{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'},styles.subHeading]}>{ sub_name_04 }</Text>
@@ -61,7 +61,7 @@ export default function BibItemScreen() {
             <View style={styles.textContainer}>
                 <Text style={{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'}}>{text_04}</Text>
             </View>
-        </View>
+        </ScrollView>
         
         {/* <View style={styles.containerChild}>
             <Image 
