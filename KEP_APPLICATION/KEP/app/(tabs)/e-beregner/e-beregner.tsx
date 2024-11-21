@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Dimensions,ScrollView, Pressable } from 'react-native';
+import AntDesign from '@expo/vector-icons/AntDesign';
+import {Picker} from '@react-native-picker/picker';
 
 
 const App: React.FC = () => {
   // Define types for state
   interface State {
-    alder_1: string;
-    hoejde_1: string;
-    navn_1: string;
-    vaegt_1: string;
-    koen_1: string;
-    fysisk_form_1: string,
-    aktivitetsniveau_1: string,
-    restriktioner_1: string,
-    result: string | null;
+    alder: string;
+    hoejde: string;
+    navn: string;
+    vaegt: string;
+    koen: string;
+    fysisk_form: string,
+    aktivitetsniveau: string,
+    restriktioner: string,
+    energibehov: string | null;
   }
   const [showResults, setShowResults] = useState(false);
   const hideResults = () => {
@@ -22,15 +24,15 @@ const App: React.FC = () => {
 
   // State for inputs and result
   const [state, setState] = useState<State>({
-    alder_1: '',
-    hoejde_1: '',
-    navn_1: '',
-    vaegt_1: '',
-    koen_1: '',
-    fysisk_form_1: '',
-    aktivitetsniveau_1: '',
-    restriktioner_1: '',
-    result: null
+    alder: '',
+    hoejde: '',
+    navn: '',
+    vaegt: '',
+    koen: '',
+    fysisk_form: '',
+    aktivitetsniveau: '',
+    restriktioner: '',
+    energibehov: null,
   });
 
   // Function to update state for any input
@@ -41,19 +43,26 @@ const App: React.FC = () => {
     }));
   };
 
-  // Function to handle calculation
   const handleCalculate = () => {
-    if(state.alder_1 && state.hoejde_1 && state.vaegt_1) {
-      const sum = parseFloat(state.alder_1) + parseFloat(state.hoejde_1) + parseFloat(state.vaegt_1);
-      setState(prevState => ({
-        ...prevState,
-        result: `Sum of nums is: ${sum}`
-      }));
+    if (state.alder && state.hoejde && state.vaegt && state.koen && state.fysisk_form && state.aktivitetsniveau && state.restriktioner) {
+      let ageGroup = "Anden aldersgruppe";  // Default to another age group
+      let ageGroupDict = [ 
+        [17, 24, 50, 70],  
+        [11.8, 11.3, 10.3, 10.1]
+      ]
+      if (state.koen.toLowerCase() == "mand") {
+        const bmr = (10 * parseFloat(state.vaegt)) + (6.25 * parseFloat(state.hoejde)) - (5 * parseFloat(state.alder)) + 5
+        setState(prevState => ({
+          ...prevState,
+          energibehov: `Din BMR: ${bmr}`  
+        }));
+      }
+
       setShowResults(true); // Show results after calculation
     } else {
       setState(prevState => ({
         ...prevState,
-        result: "Please enter valid numbers."
+        energibehov: "Noget gik galt med at beregne dit energibehov... Prøv igen"
       }));
       setShowResults(true); // Still show results to inform the user
     }
@@ -61,81 +70,78 @@ const App: React.FC = () => {
 
   return (
   <>
-  {showResults && (
-    <View style={styles.resultContainer}>
-      <Button title='x' onPress={hideResults}/>
-      <View>
-        {state.result && <Text>{state.result}</Text>}
-        <Text style={{fontSize: 18}}>Person 1</Text>
-        {state.navn_1 && <Text>Navn: {state.navn_1}</Text>}
-        {state.alder_1 && <Text>Alder: {state.alder_1}</Text>}
-      </View>
-    </View>
-  )}
     <View style={styles.container}>
       <ScrollView style={styles.innerContainer}>
         <View style={styles.inputContainer}>
-          <Text style={styles.inputContainerLabel}>Navn</Text>
+          <Text style={styles.inputContainerLabel}>Navn<Text style={{color: "red"}}>*</Text></Text>
           <TextInput
             style={styles.input}
-            onChangeText={(text) => handleInputChange('navn_1', text)}
-            value={state.navn_1}
+            onChangeText={(text) => handleInputChange('navn', text)}
+            value={state.navn}
             placeholder="Navn på første person"
+            placeholderTextColor="gray"
             />
-          <Text style={styles.inputContainerLabel}>Alder</Text>
+          <Text style={styles.inputContainerLabel}>Alder<Text style={{color: "red"}}>*</Text></Text>
           <TextInput
             style={styles.input}
             keyboardType="numeric"
-            onChangeText={(text) => handleInputChange('alder_1', text)}
-            value={state.alder_1}
+            onChangeText={(text) => handleInputChange('alder', text)}
+            value={state.alder}
             placeholder="Angiv kun antal hele år"
+            placeholderTextColor="gray"
             />
-          <Text style={styles.inputContainerLabel}>Højde</Text>
+          <Text style={styles.inputContainerLabel}>Højde<Text style={{color: "red"}}>*</Text></Text>
           <TextInput
             style={styles.input}
             keyboardType="numeric"
-            onChangeText={(text) => handleInputChange('hoejde_1', text)}
-            value={state.hoejde_1}
+            onChangeText={(text) => handleInputChange('hoejde', text)}
+            value={state.hoejde}
             placeholder="Angiv i cm"
+            placeholderTextColor="gray"
             />
-          <Text style={styles.inputContainerLabel}>Vægt</Text>
+          <Text style={styles.inputContainerLabel}>Vægt<Text style={{color: "red"}}>*</Text></Text>
           <TextInput
             style={styles.input}
             keyboardType="numeric"
-            onChangeText={(text) => handleInputChange('vaegt_1', text)}
-            value={state.vaegt_1}
+            onChangeText={(text) => handleInputChange('vaegt', text)}
+            value={state.vaegt}
             placeholder="Angiv i kg"
+            placeholderTextColor="gray"
             />
-          <Text style={styles.inputContainerLabel}>Køn</Text>
+          <Text style={styles.inputContainerLabel}>Køn<Text style={{color: "red"}}>*</Text></Text>
           <TextInput
             style={styles.input}
-            onChangeText={(text) => handleInputChange('koen_1', text)}
-            value={state.koen_1}
+            onChangeText={(text) => handleInputChange('koen', text)}
+            value={state.koen}
             placeholder="mand / kvinde"
+            placeholderTextColor="gray"
             />
-          <Text style={styles.inputContainerLabel}>Fysisk Form</Text>
+          <Text style={styles.inputContainerLabel}>Fysisk form<Text style={{color: "red"}}>*</Text></Text>
           <TextInput
             keyboardType="numeric"
             style={styles.input}
-            onChangeText={(text) => handleInputChange('fysisk_form_1', text)}
-            value={state.fysisk_form_1}
+            onChangeText={(text) => handleInputChange('fysisk_form', text)}
+            value={state.fysisk_form}
             placeholder="0 - 5"
+            placeholderTextColor="gray"
             />
-          <Text style={styles.inputContainerLabel}>Aktivitetsniveau</Text>
+          <Text style={styles.inputContainerLabel}>Aktivitetsniveau<Text style={{color: "red"}}>*</Text></Text>
           <TextInput
             keyboardType="numeric"
             style={styles.input}
-            onChangeText={(text) => handleInputChange('aktivitetsniveau_1', text)}
-            value={state.aktivitetsniveau_1}
+            onChangeText={(text) => handleInputChange('aktivitetsniveau', text)}
+            value={state.aktivitetsniveau}
             placeholder="0 - 5"
+            placeholderTextColor="gray"
             />
-          <Text style={styles.inputContainerLabel}>Kost Restriktioner</Text>
+          <Text style={styles.inputContainerLabel}>Kostrestriktioner<Text style={{color: "red"}}>*</Text></Text>
           <TextInput
             keyboardType="numeric"
             style={styles.input}
-            onChangeText={(text) => handleInputChange('restriktioner_1', text)}
-            value={state.restriktioner_1}
+            onChangeText={(text) => handleInputChange('restriktioner', text)}
+            value={state.restriktioner}
             placeholder="0 - 5"
+            placeholderTextColor="gray"
             />
           <Pressable style={styles.buttonStyle} onPress={handleCalculate} >
             <Text style={{color: "#fff", fontWeight: 800}}>Calculate</Text>
@@ -144,15 +150,19 @@ const App: React.FC = () => {
       </ScrollView>
       
       <View style={styles.innerContainer}>
-
-      </View>
-
-      <View style={styles.innerContainer}>
-
-      </View>
-
-      <View style={styles.innerContainer}>
-
+      {showResults && (
+        <View style={styles.resultContainer}>
+          <Pressable style={styles.closeWindowStyle} onPress={hideResults}> 
+            <AntDesign name="close" size={18} color="black" />
+          </Pressable>
+          <View>
+            <Text style={{fontSize: 18}}>Person 1</Text>
+            {state.navn && <Text>Navn: {state.navn}</Text>}
+            {state.alder && <Text>Alder: {state.alder}</Text>}
+            {state.energibehov && <Text>energibehov: {state.energibehov}</Text>}
+          </View>
+        </View>
+      )}
       </View>
     </View>
     
@@ -174,7 +184,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     borderColor: "#DCDCDC",
     borderWidth: 1,
-    width: 250,
+    // width: 250,
     height:  (Dimensions.get("window").height) * 0.8,
     margin: 5,
     padding: 10,
@@ -193,18 +203,20 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 10,
     paddingHorizontal: 8,
+
   },
   resultContainer: {
-    position: 'absolute', // Use absolute positioning
-    top: '50%', // Centers vertically
-    left: '50%', // Centers horizontally
-    transform: [{ translateX: -Dimensions.get('window').width * 0.25 / 2 }, { translateY: -Dimensions.get('window').height * 0.25 / 2 }], // Adjust for half of the container size to center it perfectly
+    // position: 'absolute', // Use absolute positioning
+    // top: '50%', // Centers vertically
+    // left: '50%', // Centers horizontally
+    // transform: [{ translateX: -Dimensions.get('window').width * 0.25 / 2 }, { translateY: -Dimensions.get('window').height * 0.25 / 2 }], // Adjust for half of the container size to center it perfectly
     zIndex: 10, // Ensure it's on top
-    padding: 10,
+    padding: 15,
     backgroundColor: '#e6e6e6',
     borderRadius: 5,
-    height:  (Dimensions.get("window").height) * 0.25,
-    width:  (Dimensions.get("window").width) * 0.25,
+    width: 400,
+    // height:  (Dimensions.get("window").height) * 0.25,
+    // width:  (Dimensions.get("window").width) * 0.25,
   },
   buttonStyle: {
     backgroundColor: '#0000FF',
@@ -212,7 +224,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 8,
-  }
+  },
+  closeWindowStyle: {
+    alignItems: 'flex-end'
+  },
 });
 
 export default App;
