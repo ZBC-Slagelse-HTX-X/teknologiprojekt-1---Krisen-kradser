@@ -24,7 +24,7 @@ const App: React.FC = () => {
     setShowResults(false);
   };
 
-  // State for inputs and result
+  
   const [state, setState] = useState<State>({
     alder: '',
     hoejde: '',
@@ -70,9 +70,32 @@ const App: React.FC = () => {
   const { theme } = useTheme();
   const currentTheme = theme === 'normal' ? colorBlindTheme:normalTheme;
 
+  const [ def_aktivitetsniveau, setDef_aktivitetsniveau ] = useState(false);
+  
+  // const hide_Def = () => {
+    // setDef_aktivitetsniveau(false);
+  // };
+
 
   return (
   <>
+  {def_aktivitetsniveau && (
+    <View style={[styles.defContainer]}>
+      <View style={{alignItems: 'flex-end'}}>
+        <Pressable onPress={() => {setDef_aktivitetsniveau(false);}}>
+          <AntDesign name="close" size={20} style={{zIndex:20}} color="black" />
+        </Pressable>
+      </View>
+      <View>
+        <Text style={[{fontSize: 20, width: 360,top:-18}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Betydning af aktivitetsniveauer</Text>
+        <Text style={[{margin: 2}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Lidt aktiv: Typiske daglige aktiviteter + let motion eller sport 1-3 dage om ugen.</Text>
+        <Text style={[{margin: 2}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Moderat aktiv: Daglige aktiviteter + moderat motion eller sport 3-5 dage om ugen.</Text>
+        <Text style={[{margin: 2}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Aktiv: Daglige aktiviteter + hård motion eller sport 6-7 dage om ugen.</Text>
+        <Text style={[{margin: 2}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Meget aktiv: Daglige aktiviteter + meget hård motion eller sport og et fysisk krævende job.</Text>
+      </View>
+    </View>
+  )}
+
     <View style={styles.container}>
       <ScrollView style={styles.innerContainer}>
         <View style={styles.inputContainer}>
@@ -115,7 +138,17 @@ const App: React.FC = () => {
             placeholderTextColor="gray"
           />
 
-          <Text style={[styles.inputContainerLabel, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Køn<Text style={{color: currentTheme.redBlack}}>*</Text></Text>
+          <View style={{flexDirection:"row"}}>
+            <Text style={[
+              styles.inputContainerLabel, 
+              { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }
+            ]}
+            >
+              Køn
+              <Text style={{color: currentTheme.redBlack}}>*</Text>
+            </Text>
+          </View>
+
           {Platform.OS === 'ios' ? 
           (
             <View style={styles.pickerContainer}>
@@ -157,8 +190,14 @@ const App: React.FC = () => {
             </Picker>
             )
           }
-
-          <Text style={[styles.inputContainerLabel, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Aktivitetsniveau<Text style={{color: currentTheme.redBlack}}>*</Text></Text>
+          
+          <View style={{flexDirection:"row"}}>
+            <Text style={[styles.inputContainerLabel, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Aktivitetsniveau<Text style={{color: currentTheme.redBlack}}>*</Text></Text>
+            <Pressable style={[styles.defiBtn, {backgroundColor: currentTheme.calculatorButton}]} onPress={() => setDef_aktivitetsniveau(true)}>
+              <Text style={[{color: "#fff", fontWeight: 800}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Læs definitioner</Text>
+            </Pressable>
+          </View>
+          
           {Platform.OS === 'ios' ? 
           (
             <View style={styles.pickerContainer}>
@@ -240,7 +279,6 @@ const App: React.FC = () => {
       )}
       </View>
     </View>
-    
   </>
   );
 };
@@ -324,6 +362,25 @@ const styles = StyleSheet.create({
   pickerNative: {
     height: 40,
     backgroundColor: 'transparent',
+  },
+  defiBtn: {
+    borderRadius:5,
+    paddingHorizontal:2,
+    height:24,
+    justifyContent:"center",
+    alignItems:"center"
+  },
+  defContainer: {
+    position: 'absolute',
+    top: '50%',
+    left: '35%',
+    transform: [{ translateX: -Dimensions.get('window').width * 0.25 / 2 }, { translateY: -Dimensions.get('window').height * 0.25 / 2 }], 
+    zIndex: 10,
+    padding: 10,
+    backgroundColor: '#e6e6e6',
+    borderRadius: 5,
+    // height:  (Dimensions.get("window").height) * 0.25,
+    // width:  (Dimensions.get("window").width) * 0.25,
   },
 });
 
