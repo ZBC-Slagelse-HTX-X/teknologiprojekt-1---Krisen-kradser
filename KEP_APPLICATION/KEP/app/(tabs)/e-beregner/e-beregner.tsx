@@ -1,154 +1,166 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Dimensions,ScrollView, Pressable, Platform, TouchableOpacity, Modal } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Dimensions, ScrollView, Pressable, Platform, TouchableOpacity, Modal } from 'react-native';
 import AntDesign from '@expo/vector-icons/AntDesign';
-import {Picker} from '@react-native-picker/picker';
+import { Picker } from '@react-native-picker/picker';
 import { useFont } from "@/components/fontContext";
 import { useTheme } from "@/components/themeContext";
 import { normalTheme, colorBlindTheme } from "@/constants/themes";
 
-
 const App: React.FC = () => {
-  // Define types for state
-  interface State {
+  interface Entry {
     alder: string;
     hoejde: string;
     navn: string;
     vaegt: string;
     koen: string;
-    aktivitetsniveau: string,
-    restriktioner: string,
+    aktivitetsniveau: string;
+    restriktioner: string;
     energibehov: string | null;
   }
-  const [showResults, setShowResults] = useState(false);
-  const hideResults = () => {
-    setShowResults(false);
-  };
 
-  
-  const [state, setState] = useState<State>({
+  const [showResults, setShowResults] = useState(false);
+  const [entries, setEntries] = useState<Entry[]>([{
     alder: '',
     hoejde: '',
     navn: '',
     vaegt: '',
-    koen: '',
-    aktivitetsniveau: '',
+    koen: 'Mand',
+    aktivitetsniveau: '1.2',
     restriktioner: '',
     energibehov: null,
-  });
+  }]);
 
-  const handleInputChange = (key: keyof State, value: string) => {
-    setState(prevState => ({
-      ...prevState,
-      [key]: value
-    }));
+  const handleInputChange = (index: number, key: keyof Entry, value: string) => {
+    setEntries(prevEntries => prevEntries.map((entry, i) => 
+      i === index ? { ...entry, [key]: value } : entry
+    ));
   };
 
-  const handleCalculate = () => {
-    if (state.alder && state.hoejde && state.vaegt && state.koen && state.aktivitetsniveau) {
-      if (state.koen.toLowerCase() == "mand") {
-        const bmr = (10 * parseFloat(state.vaegt)) + (6.25 * parseFloat(state.hoejde)) - (5 * parseFloat(state.alder)) + 5;
-        const maintenanceCalories = Math.ceil((bmr * parseFloat(state.aktivitetsniveau)));
-        setState(prevState => ({
-          ...prevState,
-          energibehov: `Forsøg at indtage ${maintenanceCalories} kalorier om dagen`,
-        }));
+  const handleCalculate = (index: number) => {
+    const currentEntry = entries[index];
+    if (currentEntry.alder && currentEntry.hoejde && currentEntry.vaegt && currentEntry.koen && currentEntry.aktivitetsniveau) {
+      let bmr = 0;
+      if (currentEntry.koen.toLowerCase() === "mand") {
+        bmr = (10 * parseFloat(currentEntry.vaegt)) + (6.25 * parseFloat(currentEntry.hoejde)) - (5 * parseFloat(currentEntry.alder)) + 5;
+      } else if (currentEntry.koen.toLowerCase() === "kvinde") {
+        bmr = (10 * parseFloat(currentEntry.vaegt)) + (6.25 * parseFloat(currentEntry.hoejde)) - (5 * parseFloat(currentEntry.alder)) - 161;
       }
-      setShowResults(true);
+      const maintenanceCalories = Math.ceil((bmr * parseFloat(currentEntry.aktivitetsniveau)));
+      handleInputChange(index, 'energibehov', `Forsøg at indtage ${maintenanceCalories} kalorier om dagen`);
     } else {
-      setState(prevState => ({
-        ...prevState,
-        energibehov: "Noget gik galt med at beregne dit energibehov... Prøv igen",
-      }));
-      setShowResults(true);
+      handleInputChange(index, 'energibehov', "Noget gik galt med at beregne dit energibehov... Prøv igen");
     }
+    setShowResults(true);
   };
-  
+
+  const hideResults = (index: number) => {
+    setEntries(prevEntries => prevEntries.map((entry, i) => 
+      i === index ? { ...entry, energibehov: null } : entry
+    ));
+    setShowResults(false);
+  };
+
+  const addNewEntry = () => {
+    setEntries(prevEntries => [...prevEntries, {
+      alder: '',
+      hoejde: '',
+      navn: '',
+      vaegt: '',
+      koen: '',
+      aktivitetsniveau: '',
+      restriktioner: '',
+      energibehov: null,
+    }]);
+  };
+
   const [genderModalVisible, setGenderModalVisible] = useState(false);
   const [activityModalVisible, setActivityModalVisible] = useState(false);
   
   const { dyslexiaMode } = useFont();
   const { theme } = useTheme();
-  const currentTheme = theme === 'normal' ? colorBlindTheme:normalTheme;
+  const currentTheme = theme === 'normal' ? normalTheme : colorBlindTheme;
 
-  const [ def_aktivitetsniveau, setDef_aktivitetsniveau ] = useState(false);
+  const [def_aktivitetsniveau, setDef_aktivitetsniveau] = useState(false);
 
   return (
-  <>
-  {def_aktivitetsniveau && (
+    <>
+    {def_aktivitetsniveau && (
     <View style={[styles.defContainer]}>
-      <View style={{alignItems: 'flex-end'}}>
-        <Pressable onPress={() => {setDef_aktivitetsniveau(false);}}>
-          <AntDesign name="close" size={20} style={{zIndex:20}} color="black" />
-        </Pressable>
-      </View>
-      <View>
-        <Text style={[{fontSize: 20, width: 360,top:-18}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Betydning af aktivitetsniveauer</Text>
-        <Text style={[{margin: 2}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Lidt aktiv: Typiske daglige aktiviteter + let motion eller sport 1-3 dage om ugen.</Text>
-        <Text style={[{margin: 2}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Moderat aktiv: Daglige aktiviteter + moderat motion eller sport 3-5 dage om ugen.</Text>
-        <Text style={[{margin: 2}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Aktiv: Daglige aktiviteter + hård motion eller sport 6-7 dage om ugen.</Text>
-        <Text style={[{margin: 2}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Meget aktiv: Daglige aktiviteter + meget hård motion eller sport og et fysisk krævende job.</Text>
-      </View>
+    <View style={{alignItems: 'flex-end'}}>
+      <Pressable onPress={() => {setDef_aktivitetsniveau(false);}}>
+        <AntDesign name="close" size={20} style={{zIndex:20}} color="black" />
+      </Pressable>
     </View>
-  )}
+    <View>
+      <Text style={[{fontSize: 20, width: 360,top:-18}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Betydning af aktivitetsniveauer</Text>
+      <Text style={[{margin: 2}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Lidt aktiv: Typiske daglige aktiviteter + let motion eller sport 1-3 dage om ugen.</Text>
+      <Text style={[{margin: 2}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Moderat aktiv: Daglige aktiviteter + moderat motion eller sport 3-5 dage om ugen.</Text>
+      <Text style={[{margin: 2}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Aktiv: Daglige aktiviteter + hård motion eller sport 6-7 dage om ugen.</Text>
+      <Text style={[{margin: 2}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Meget aktiv: Daglige aktiviteter + meget hård motion eller sport og et fysisk krævende job.</Text>
+    </View>
+  </View>
+      )}
 
-    <View style={styles.container}>
-      <ScrollView style={styles.innerContainer}>
-        <View style={styles.inputContainer}>
-          <Text style={[styles.inputContainerLabel, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Navn<Text style={{color: currentTheme.redBlack}}>*</Text></Text>
-          <TextInput
-            style={[styles.input, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}
-            onChangeText={(text) => handleInputChange('navn', text)}
-            value={state.navn}
-            placeholder="Navn på første person"
-            placeholderTextColor="gray"
-          />
+      <View style={styles.container}>
+        <ScrollView style={styles.innerContainer}>
+          {entries.map((entry, index) => (
+            <View key={index} style={styles.inputContainer}>
+              <Text style={[styles.inputContainerLabel, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Navn<Text style={{color: currentTheme.redBlack}}>*</Text></Text>
+              <TextInput
+                style={[styles.input, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}
+                onChangeText={(text) => handleInputChange(index, 'navn', text)}
+                value={entry.navn}
+                placeholder="Navn"
+                placeholderTextColor="gray"
+              />
+              
+              <Text style={[styles.inputContainerLabel, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Alder<Text style={{color: currentTheme.redBlack}}>*</Text></Text>
+              <TextInput
+                style={[styles.input, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}
+                keyboardType="numeric"
+                onChangeText={(text) => handleInputChange(index, 'alder', text)}
+                value={entry.alder}
+                placeholder="Angiv kun antal hele år"
+                placeholderTextColor="gray"
+              />
 
-          <Text style={[styles.inputContainerLabel, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Alder<Text style={{color: currentTheme.redBlack}}>*</Text></Text>
-          <TextInput
-            style={[styles.input, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}
-            keyboardType="numeric"
-            onChangeText={(text) => handleInputChange('alder', text)}
-            value={state.alder}
-            placeholder="Angiv kun antal hele år"
-            placeholderTextColor="gray"
-          />
+              <Text style={[styles.inputContainerLabel,  { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Højde<Text style={{color: currentTheme.redBlack}}>*</Text></Text>
+              <TextInput
+                style={[styles.input, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}
+                keyboardType="numeric"
+                onChangeText={(text) => handleInputChange(index, 'hoejde', text)}
+                value={entry.hoejde}
+                placeholder="Angiv i cm"
+                placeholderTextColor="gray"
+              />
 
-          <Text style={[styles.inputContainerLabel,  { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Højde<Text style={{color: currentTheme.redBlack}}>*</Text></Text>
-          <TextInput
-            style={[styles.input, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}
-            keyboardType="numeric"
-            onChangeText={(text) => handleInputChange('hoejde', text)}
-            value={state.hoejde}
-            placeholder="Angiv i cm"
-            placeholderTextColor="gray"
-          />
+              <Text style={[styles.inputContainerLabel, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Vægt<Text style={{color: currentTheme.redBlack}}>*</Text></Text>
+              <TextInput
+                style={[styles.input, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}
+                keyboardType="numeric"
+                onChangeText={(text) => handleInputChange(index, 'vaegt', text)}
+                value={entry.vaegt}
+                placeholder="Angiv i kg"
+                placeholderTextColor="gray"
+              />
 
-          <Text style={[styles.inputContainerLabel, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Vægt<Text style={{color: currentTheme.redBlack}}>*</Text></Text>
-          <TextInput
-            style={[styles.input, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}
-            keyboardType="numeric"
-            onChangeText={(text) => handleInputChange('vaegt', text)}
-            value={state.vaegt}
-            placeholder="Angiv i kg"
-            placeholderTextColor="gray"
-          />
+              <View style={{flexDirection:"row"}}>
+                <Text style={[
+                  styles.inputContainerLabel, 
+                  { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }
+                ]}
+                >
+                  Køn
+                  <Text style={{color: currentTheme.redBlack}}>*</Text>
+                </Text>
+              </View>
 
-          <View style={{flexDirection:"row"}}>
-            <Text style={[
-              styles.inputContainerLabel, 
-              { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }
-            ]}
-            >
-              Køn
-              <Text style={{color: currentTheme.redBlack}}>*</Text>
-            </Text>
-          </View>
 
           {Platform.OS === 'ios' ? 
           (
             <View style={styles.pickerContainer}>
               <Pressable onPress={() => setGenderModalVisible(true)}>
-                <Text style={{ fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }}>{state.koen || "Vælg køn"}</Text>
+                <Text style={{ fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }}>{entry.koen || "Vælg køn"}</Text>
               </Pressable>
               <Modal
                 animationType="slide"
@@ -158,9 +170,9 @@ const App: React.FC = () => {
               >
                 <View style={[styles.modalView, {zIndex: 100}]}>
                   <Picker
-                    selectedValue={state.koen}
+                    selectedValue={entry.koen}
                     onValueChange={(itemValue) => {
-                      handleInputChange('koen', itemValue);
+                      handleInputChange(index, 'koen', itemValue);
                       setGenderModalVisible(false);
                     }}
                     style={[styles.pickerModal, {backgroundColor: ''}]}
@@ -175,9 +187,9 @@ const App: React.FC = () => {
             ): 
             (
             <Picker
-              selectedValue={state.koen}
+              selectedValue={entry.koen}
               style={styles.input}
-              onValueChange={(itemValue) => handleInputChange('koen', itemValue)}
+              onValueChange={(itemValue) => handleInputChange(index, 'koen', itemValue)}
               itemStyle={[{color: 'black'}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}
             >
               <Picker.Item label="Mand" value="Mand" />
@@ -185,6 +197,7 @@ const App: React.FC = () => {
             </Picker>
             )
           }
+
           
           <View style={{flexDirection:"row"}}>
             <Text style={[styles.inputContainerLabel, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Aktivitetsniveau<Text style={{color: currentTheme.redBlack}}>*</Text></Text>
@@ -192,12 +205,12 @@ const App: React.FC = () => {
               <Text style={[{color: "#fff", fontWeight: 800}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Læs definitioner</Text>
             </Pressable>
           </View>
-          
+
           {Platform.OS === 'ios' ? 
           (
             <View style={styles.pickerContainer}>
               <Pressable onPress={() => setActivityModalVisible(true)}>
-                <Text style={{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'}}>{state.aktivitetsniveau || "Vælg aktivitetsniveau"}</Text>
+                <Text style={{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'}}>{entry.aktivitetsniveau || "Vælg aktivitetsniveau"}</Text>
               </Pressable>
               <Modal
                 animationType="slide"
@@ -207,9 +220,9 @@ const App: React.FC = () => {
               >
                 <View style={[styles.modalView, {zIndex: 100}]}>
                   <Picker
-                    selectedValue={state.aktivitetsniveau}
+                    selectedValue={entry.aktivitetsniveau}
                     onValueChange={(itemValue) => {
-                      handleInputChange('aktivitetsniveau', itemValue);
+                      handleInputChange(index, 'aktivitetsniveau', itemValue);
                       setActivityModalVisible(false);
                     }}
                     style={[styles.pickerModal, {backgroundColor: ''}]}
@@ -226,9 +239,9 @@ const App: React.FC = () => {
             ): 
             (
             <Picker
-              selectedValue={state.aktivitetsniveau}
+              selectedValue={entry.aktivitetsniveau}
               style={styles.input}
-              onValueChange={(itemValue) => handleInputChange('aktivitetsniveau', itemValue)}
+              onValueChange={(itemValue) => handleInputChange(index, 'aktivitetsniveau', itemValue)}
               itemStyle={[{color: 'black'}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}
             >
               <Picker.Item label="Lidt aktiv" value="1.2" />
@@ -238,45 +251,52 @@ const App: React.FC = () => {
             </Picker>
             )
           }
-          
-          
-          
-          
+
+             
           <Text style={[styles.inputContainerLabel, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Kostrestriktioner</Text>
           <TextInput
             keyboardType="numeric"
             style={[styles.input, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}
-            onChangeText={(text) => handleInputChange('restriktioner', text)}
-            value={state.restriktioner}
+            onChangeText={(text) => handleInputChange(index, 'restriktioner', text)}
+            value={entry.restriktioner}
             placeholder="0 - 5"
             placeholderTextColor="gray"
             />
-          <Pressable style={[styles.buttonStyle, {backgroundColor: currentTheme.calculatorButton}]} onPress={handleCalculate} >
-            <Text style={[{color: "#fff", fontWeight: 800}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Calculate</Text>
+
+              {/* Calculate Button */}
+              <Pressable style={[styles.buttonStyle, {backgroundColor: currentTheme.calculatorButton}]} onPress={() => handleCalculate(index)}>
+                <Text style={[{color: "#fff", fontWeight: 800}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Calculate</Text>
+              </Pressable>
+            </View>
+          ))}
+          
+          {/* Add New Person Button */}
+          <Pressable style={[styles.buttonStyle, {backgroundColor: currentTheme.calculatorButton}]} onPress={addNewEntry}>
+            <Text style={[{color: "#fff", fontWeight: 800}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Tilføj en person</Text>
           </Pressable>
-        </View>
-      </ScrollView>
-      
-      {/* Resulatater af beregning */}
-      <View style={styles.innerContainer}>
-      {showResults && (
-        <View style={styles.resultContainer}>
-          <Pressable style={[styles.closeWindowStyle]} onPress={hideResults}> 
-            <AntDesign name="close" size={18} color="black" />
-          </Pressable>
-          <View>
-            <Text style={[{fontSize: 18}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>{state.navn}</Text>
-            {state.alder && <Text style={{ fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }}>Alder: {state.alder}</Text>}
-            {state.energibehov && <Text style={{ fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }}>{state.energibehov}</Text>}
-            {state.aktivitetsniveau && <Text style={{ fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }}>{state.aktivitetsniveau}</Text>}
+        </ScrollView>
+
+        {/* Results Section */}
+        {showResults && 
+          <View style={[styles.innerContainer]}>
+            {entries.map((entry, index) => (
+              entry.energibehov && 
+              <View key={index} style={styles.resultContainer}>
+                <Pressable style={[styles.closeWindowStyle]} onPress={() => hideResults(index)}>
+                  <AntDesign name="close" size={18} color="black" />
+                </Pressable>
+                <Text style={[{fontSize: 18}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>{entry.navn}</Text>
+                {entry.alder && <Text style={{ fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }}>Alder: {entry.alder}</Text>}
+                {entry.energibehov && <Text style={{ fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }}>{entry.energibehov}</Text>}
+              </View>
+            ))}
           </View>
-        </View>
-      )}
+        }
       </View>
-    </View>
-  </>
+    </>
   );
 };
+
 
 const styles = StyleSheet.create({
   container: {
@@ -317,6 +337,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#e6e6e6',
     borderRadius: 5,
     width: 400,
+    marginVertical: 10
   },
   buttonStyle: {
     padding: 8,
