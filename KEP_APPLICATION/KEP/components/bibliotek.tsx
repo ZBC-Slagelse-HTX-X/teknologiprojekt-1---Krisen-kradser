@@ -41,6 +41,7 @@ import { normalTheme, colorBlindTheme } from "@/constants/themes";
                             sub_name_02:item.sub_name_02,
                             sub_name_03:item.sub_name_03,
                             sub_name_04:item.sub_name_04,
+                            video_path:item.video_path
                           }
                         }} 
                         style={[
@@ -83,6 +84,7 @@ import { normalTheme, colorBlindTheme } from "@/constants/themes";
                               sub_name_02:item.sub_name_02,
                               sub_name_03:item.sub_name_03,
                               sub_name_04:item.sub_name_04,
+                              video_path:item.video_path
                             }
                           }} 
                           style={[
