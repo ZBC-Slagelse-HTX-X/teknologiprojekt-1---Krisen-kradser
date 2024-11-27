@@ -71,11 +71,6 @@ const App: React.FC = () => {
   const currentTheme = theme === 'normal' ? colorBlindTheme:normalTheme;
 
   const [ def_aktivitetsniveau, setDef_aktivitetsniveau ] = useState(false);
-  
-  // const hide_Def = () => {
-    // setDef_aktivitetsniveau(false);
-  // };
-
 
   return (
   <>

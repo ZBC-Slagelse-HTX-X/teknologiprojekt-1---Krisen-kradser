@@ -13,7 +13,7 @@ export default function Layout() {
     <View style={{
       flex: 1, 
       flexDirection:"row",  
-      backgroundColor: currentTheme.bibBackground
+      backgroundColor: currentTheme.newBibBackground
     }}>
       <Header />
       

@@ -10,7 +10,6 @@ import { normalTheme, colorBlindTheme } from "@/constants/themes";
 export default function Indstillinger() {
   const { dyslexiaMode, setDyslexiaMode } = useFont();
   const toggleSwitch = () => setDyslexiaMode(!dyslexiaMode);
-  // const toggleSwitch = () => setDyslexiaMode((prevState: boolean) => !prevState);
 
   const [loaded, error] = useFonts({
     'open-dyslexic': require('@/assets/fonts/open-dyslexic.ttf'),
@@ -52,6 +51,7 @@ export default function Indstillinger() {
           </Text>
           
           <Switch
+            style={{margin:10}}
             trackColor={{ false: 'grey', true: '#1e90ff' }}
             thumbColor={dyslexiaMode ? '#f5dd4b' : undefined}
             {...Platform.select({
@@ -74,6 +74,7 @@ export default function Indstillinger() {
             Farveblindhedstilstand
           </Text>
           <Switch
+            style={{margin:10}}
             trackColor={{ false: 'grey', true: '#1e90ff' }}
             thumbColor={theme ? undefined : "#f5dd4b"}
             {...Platform.select({
@@ -117,7 +118,7 @@ const styles = StyleSheet.create({
   settingsInnerContainer: {
     width: "100%",
     height: 50,
-    justifyContent: "space-between",
+    justifyContent: "flex-end",
     alignItems: "center",
     flexDirection: "row",
     borderBottomWidth: 1,

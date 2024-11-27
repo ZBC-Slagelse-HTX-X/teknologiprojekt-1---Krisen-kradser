@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Text, View, StyleSheet, FlatList, Pressable } from "react-native";
+import { Text, View, StyleSheet, FlatList, Pressable, ScrollView } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useFont } from "@/components/fontContext";
 import { useTheme } from "@/components/themeContext";
@@ -26,69 +26,758 @@ export default function Index() {
   '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[';
 
 
+
+  const frontImage = theme === 'normal' 
+  ? require("@/assets/images/KEP_BnW.png")
+  : require("@/assets/images/icon.png");
+
   return (
     <SafeAreaProvider style={[
-      { backgroundColor: currentTheme.bibBackground },
+      { backgroundColor: currentTheme.newBibBackground },
       { flex:1 }
     ]}>
       <SafeAreaView style={{ flex:1, flexDirection: "row" }}>
-      <View style={{flex:1}}>
-        <Text style={[
+      <View style={{flex:1, justifyContent: "center", alignItems: "center"}}>
+        <View style={{width:500, height:300}}>
+          <Image
+            style={{flex: 1, width: '100%', backgroundColor: '#0553'}}
+            transition={1000}
+            contentFit="cover"
+            source={frontImage}
+            placeholder={{ blurhash }}
+            />
+        </View>
+        <View style={{marginTop: 20}}>  
+          <Text style={[
             {fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'}, 
             styles.text,
-            { color: currentTheme.fontColor }
-            ]}>
-            Krisemanual- og ernæringsberegningsprogram (KEP)
-        </Text>
-        <Image
-          style={{width:100, height:100, position:"absolute"}}
-          transition={1000}
-          contentFit="cover"
-          source="@/assets/images/icon.png"
-          // placeholder={{ blurhash }}
-        />
-      </View>
-
-        <View style={styles.container}>
-          <Text style={{fontSize:25, fontWeight: 600}}>Grej Vi Anbefaler</Text>
-          <FlatList
-            style={styles.SectionList}
-            data={DATA.DATA}
-            keyExtractor={item => item.id}
-            renderItem={({ item }) => (
-              <View style={styles.SectionListItem}>
-              <Text 
-                style={[
-                  { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
-                  styles.linkStyle,
-                  { color: currentTheme.bibLinkStyle }
-                ]}
-              >
-                <View style={styles.iconOuterContainer}>
-                  <View style={styles.iconContainer}>
-                    <Text style={[styles.iconContainerText, { color: currentTheme.grejIconColor }]}>A</Text>
-                  </View>
-                  <Text style={[
-                    { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
-                    styles.SectionHeaderText,
-                    { color: currentTheme.grejLinkStyle }
-                  ]}>
-                    {item.name}
-                  </Text>
-                  <Checkbox
-                      style={styles.checkBox}
-                      value={!!checkedItems[item.id]}
-                      onValueChange={() => toggleCheckbox(item.id)}
-                      color={!!checkedItems[item.id] ? '#4630EB' : undefined}
-                  />
-                </View>
-              </Text>
-            </View>
-            )}
-            ItemSeparatorComponent={() => <View style={styles.SectionListFooter} />}
-            ListHeaderComponent={() => <Text style={[{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'},styles.ListHeader]}></Text>}
-          />
+            { color: currentTheme.fontColor },
+            { fontWeight: 600 }
+          ]}>
+              {/* Krisemanual- og ernæringsberegningsprogram (KEP) */}
+              Hvem er vi Tekst sektion
+          </Text>
         </View>
+      </View>
+      <ScrollView style={[styles.container, {backgroundColor: currentTheme.headerColor}]}>
+          <Text style={{fontSize:25, fontWeight: 600, color: currentTheme.grejViAnbefaler}}>Grej Vi Anbefaler</Text>
+          
+          {/* ITEM */}
+          <View style={styles.SectionListItem}>
+            <Text 
+              style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.linkStyle,
+                { color: currentTheme.tabBarInactiveTintColor }
+              ]}
+            >
+            <View style={styles.iconOuterContainer}>
+              <View style={styles.iconContainer}>
+                <Text style={[styles.iconContainerText, { color: currentTheme.grejIconColor }]}>A</Text>
+              </View>
+              <Text style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.SectionHeaderText,
+                {color: currentTheme.grejViAnbefaler}
+              ]}>
+                {/* ITEM TEXT */}
+                {"Dolk"}
+              </Text>
+              <Checkbox
+                  style={styles.checkBox}
+                  value={!!checkedItems["1"]}
+                  onValueChange={() => toggleCheckbox("1")}
+                  color={!!checkedItems["1"] ? '#4630EB' : undefined}
+              />
+            </View>
+            </Text>
+          </View>
+
+
+          {/* Item */}
+          <View style={styles.SectionListItem}>
+            <Text 
+              style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.linkStyle,
+                { color: currentTheme.tabBarInactiveTintColor }
+              ]}
+            >
+            <View style={styles.iconOuterContainer}>
+              <View style={styles.iconContainer}>
+                <Text style={[styles.iconContainerText, { color: currentTheme.grejIconColor }]}>A</Text>
+              </View>
+              <Text style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.SectionHeaderText,
+                {color: currentTheme.grejViAnbefaler}
+              ]}>
+                {/* ITEM TEXT */}
+                {"Sovepose"}
+              </Text>
+              <Checkbox
+                  style={styles.checkBox}
+                  value={!!checkedItems["2"]}
+                  onValueChange={() => toggleCheckbox("2")}
+                  color={!!checkedItems["2"] ? '#4630EB' : undefined}
+              />
+            </View>
+            </Text>
+          </View>
+
+
+          {/* Item */}
+          <View style={styles.SectionListItem}>
+            <Text 
+              style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.linkStyle,
+                { color: currentTheme.tabBarInactiveTintColor }
+              ]}
+            >
+            <View style={styles.iconOuterContainer}>
+              <View style={styles.iconContainer}>
+                <Text style={[styles.iconContainerText, { color: currentTheme.grejIconColor }]}>A</Text>
+              </View>
+              <Text style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.SectionHeaderText,
+                {color: currentTheme.grejViAnbefaler}
+              ]}>
+                {/* ITEM TEXT */}
+                {"Tarp"}
+              </Text>
+              <Checkbox
+                  style={styles.checkBox}
+                  value={!!checkedItems["3"]}
+                  onValueChange={() => toggleCheckbox("3")}
+                  color={!!checkedItems["3"] ? '#4630EB' : undefined}
+              />
+            </View>
+            </Text>
+          </View>
+
+          {/* Item */}
+          <View style={styles.SectionListItem}>
+            <Text 
+              style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.linkStyle,
+                { color: currentTheme.tabBarInactiveTintColor }
+              ]}
+            >
+            <View style={styles.iconOuterContainer}>
+              <View style={styles.iconContainer}>
+                <Text style={[styles.iconContainerText, { color: currentTheme.grejIconColor }]}>A</Text>
+              </View>
+              <Text style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.SectionHeaderText,
+                {color: currentTheme.grejViAnbefaler}
+              ]}>
+                {/* ITEM TEXT */}
+                {"Tarp"}
+              </Text>
+              <Checkbox
+                  style={styles.checkBox}
+                  value={!!checkedItems["3"]}
+                  onValueChange={() => toggleCheckbox("3")}
+                  color={!!checkedItems["3"] ? '#4630EB' : undefined}
+              />
+            </View>
+            </Text>
+          </View>
+
+          {/* Item */}
+          <View style={styles.SectionListItem}>
+            <Text 
+              style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.linkStyle,
+                { color: currentTheme.tabBarInactiveTintColor }
+              ]}
+            >
+            <View style={styles.iconOuterContainer}>
+              <View style={styles.iconContainer}>
+                <Text style={[styles.iconContainerText, { color: currentTheme.grejIconColor }]}>A</Text>
+              </View>
+              <Text style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.SectionHeaderText,
+                {color: currentTheme.grejViAnbefaler}
+              ]}>
+                {/* ITEM TEXT */}
+                {"Tarp"}
+              </Text>
+              <Checkbox
+                  style={styles.checkBox}
+                  value={!!checkedItems["3"]}
+                  onValueChange={() => toggleCheckbox("3")}
+                  color={!!checkedItems["3"] ? '#4630EB' : undefined}
+              />
+            </View>
+            </Text>
+          </View>
+
+          {/* Item */}
+          <View style={styles.SectionListItem}>
+            <Text 
+              style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.linkStyle,
+                { color: currentTheme.tabBarInactiveTintColor }
+              ]}
+            >
+            <View style={styles.iconOuterContainer}>
+              <View style={styles.iconContainer}>
+                <Text style={[styles.iconContainerText, { color: currentTheme.grejIconColor }]}>A</Text>
+              </View>
+              <Text style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.SectionHeaderText,
+                {color: currentTheme.grejViAnbefaler}
+              ]}>
+                {/* ITEM TEXT */}
+                {"Tarp"}
+              </Text>
+              <Checkbox
+                  style={styles.checkBox}
+                  value={!!checkedItems["3"]}
+                  onValueChange={() => toggleCheckbox("3")}
+                  color={!!checkedItems["3"] ? '#4630EB' : undefined}
+              />
+            </View>
+            </Text>
+          </View>
+
+          {/* Item */}
+          <View style={styles.SectionListItem}>
+            <Text 
+              style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.linkStyle,
+                { color: currentTheme.tabBarInactiveTintColor }
+              ]}
+            >
+            <View style={styles.iconOuterContainer}>
+              <View style={styles.iconContainer}>
+                <Text style={[styles.iconContainerText, { color: currentTheme.grejIconColor }]}>A</Text>
+              </View>
+              <Text style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.SectionHeaderText,
+                {color: currentTheme.grejViAnbefaler}
+              ]}>
+                {/* ITEM TEXT */}
+                {"Tarp"}
+              </Text>
+              <Checkbox
+                  style={styles.checkBox}
+                  value={!!checkedItems["3"]}
+                  onValueChange={() => toggleCheckbox("3")}
+                  color={!!checkedItems["3"] ? '#4630EB' : undefined}
+              />
+            </View>
+            </Text>
+          </View>    
+
+          {/* Item */}
+          <View style={styles.SectionListItem}>
+            <Text 
+              style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.linkStyle,
+                { color: currentTheme.tabBarInactiveTintColor }
+              ]}
+            >
+            <View style={styles.iconOuterContainer}>
+              <View style={styles.iconContainer}>
+                <Text style={[styles.iconContainerText, { color: currentTheme.grejIconColor }]}>A</Text>
+              </View>
+              <Text style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.SectionHeaderText,
+                {color: currentTheme.grejViAnbefaler}
+              ]}>
+                {/* ITEM TEXT */}
+                {"Tarp"}
+              </Text>
+              <Checkbox
+                  style={styles.checkBox}
+                  value={!!checkedItems["3"]}
+                  onValueChange={() => toggleCheckbox("3")}
+                  color={!!checkedItems["3"] ? '#4630EB' : undefined}
+              />
+            </View>
+            </Text>
+          </View>
+
+          {/* Item */}
+          <View style={styles.SectionListItem}>
+            <Text 
+              style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.linkStyle,
+                { color: currentTheme.tabBarInactiveTintColor }
+              ]}
+            >
+            <View style={styles.iconOuterContainer}>
+              <View style={styles.iconContainer}>
+                <Text style={[styles.iconContainerText, { color: currentTheme.grejIconColor }]}>A</Text>
+              </View>
+              <Text style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.SectionHeaderText,
+                {color: currentTheme.grejViAnbefaler}
+              ]}>
+                {/* ITEM TEXT */}
+                {"Tarp"}
+              </Text>
+              <Checkbox
+                  style={styles.checkBox}
+                  value={!!checkedItems["3"]}
+                  onValueChange={() => toggleCheckbox("3")}
+                  color={!!checkedItems["3"] ? '#4630EB' : undefined}
+              />
+            </View>
+            </Text>
+          </View>
+
+          {/* Item */}
+          <View style={styles.SectionListItem}>
+            <Text 
+              style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.linkStyle,
+                { color: currentTheme.tabBarInactiveTintColor }
+              ]}
+            >
+            <View style={styles.iconOuterContainer}>
+              <View style={styles.iconContainer}>
+                <Text style={[styles.iconContainerText, { color: currentTheme.grejIconColor }]}>A</Text>
+              </View>
+              <Text style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.SectionHeaderText,
+                {color: currentTheme.grejViAnbefaler}
+              ]}>
+                {/* ITEM TEXT */}
+                {"Tarp"}
+              </Text>
+              <Checkbox
+                  style={styles.checkBox}
+                  value={!!checkedItems["3"]}
+                  onValueChange={() => toggleCheckbox("3")}
+                  color={!!checkedItems["3"] ? '#4630EB' : undefined}
+              />
+            </View>
+            </Text>
+          </View>
+
+          {/* Item */}
+          <View style={styles.SectionListItem}>
+            <Text 
+              style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.linkStyle,
+                { color: currentTheme.tabBarInactiveTintColor }
+              ]}
+            >
+            <View style={styles.iconOuterContainer}>
+              <View style={styles.iconContainer}>
+                <Text style={[styles.iconContainerText, { color: currentTheme.grejIconColor }]}>A</Text>
+              </View>
+              <Text style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.SectionHeaderText,
+                {color: currentTheme.grejViAnbefaler}
+              ]}>
+                {/* ITEM TEXT */}
+                {"Tarp"}
+              </Text>
+              <Checkbox
+                  style={styles.checkBox}
+                  value={!!checkedItems["3"]}
+                  onValueChange={() => toggleCheckbox("3")}
+                  color={!!checkedItems["3"] ? '#4630EB' : undefined}
+              />
+            </View>
+            </Text>
+          </View>    
+
+          {/* Item */}
+          <View style={styles.SectionListItem}>
+            <Text 
+              style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.linkStyle,
+                { color: currentTheme.tabBarInactiveTintColor }
+              ]}
+            >
+            <View style={styles.iconOuterContainer}>
+              <View style={styles.iconContainer}>
+                <Text style={[styles.iconContainerText, { color: currentTheme.grejIconColor }]}>A</Text>
+              </View>
+              <Text style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.SectionHeaderText,
+                {color: currentTheme.grejViAnbefaler}
+              ]}>
+                {/* ITEM TEXT */}
+                {"Tarp"}
+              </Text>
+              <Checkbox
+                  style={styles.checkBox}
+                  value={!!checkedItems["3"]}
+                  onValueChange={() => toggleCheckbox("3")}
+                  color={!!checkedItems["3"] ? '#4630EB' : undefined}
+              />
+            </View>
+            </Text>
+          </View>
+
+          {/* Item */}
+          <View style={styles.SectionListItem}>
+            <Text 
+              style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.linkStyle,
+                { color: currentTheme.tabBarInactiveTintColor }
+              ]}
+            >
+            <View style={styles.iconOuterContainer}>
+              <View style={styles.iconContainer}>
+                <Text style={[styles.iconContainerText, { color: currentTheme.grejIconColor }]}>A</Text>
+              </View>
+              <Text style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.SectionHeaderText,
+                {color: currentTheme.grejViAnbefaler}
+              ]}>
+                {/* ITEM TEXT */}
+                {"Tarp"}
+              </Text>
+              <Checkbox
+                  style={styles.checkBox}
+                  value={!!checkedItems["3"]}
+                  onValueChange={() => toggleCheckbox("3")}
+                  color={!!checkedItems["3"] ? '#4630EB' : undefined}
+              />
+            </View>
+            </Text>
+          </View>
+
+          {/* Item */}
+          <View style={styles.SectionListItem}>
+            <Text 
+              style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.linkStyle,
+                { color: currentTheme.tabBarInactiveTintColor }
+              ]}
+            >
+            <View style={styles.iconOuterContainer}>
+              <View style={styles.iconContainer}>
+                <Text style={[styles.iconContainerText, { color: currentTheme.grejIconColor }]}>A</Text>
+              </View>
+              <Text style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.SectionHeaderText,
+                {color: currentTheme.grejViAnbefaler}
+              ]}>
+                {/* ITEM TEXT */}
+                {"Tarp"}
+              </Text>
+              <Checkbox
+                  style={styles.checkBox}
+                  value={!!checkedItems["3"]}
+                  onValueChange={() => toggleCheckbox("3")}
+                  color={!!checkedItems["3"] ? '#4630EB' : undefined}
+              />
+            </View>
+            </Text>
+          </View>
+
+          {/* Item */}
+          <View style={styles.SectionListItem}>
+            <Text 
+              style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.linkStyle,
+                { color: currentTheme.tabBarInactiveTintColor }
+              ]}
+            >
+            <View style={styles.iconOuterContainer}>
+              <View style={styles.iconContainer}>
+                <Text style={[styles.iconContainerText, { color: currentTheme.grejIconColor }]}>A</Text>
+              </View>
+              <Text style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.SectionHeaderText,
+                {color: currentTheme.grejViAnbefaler}
+              ]}>
+                {/* ITEM TEXT */}
+                {"Tarp"}
+              </Text>
+              <Checkbox
+                  style={styles.checkBox}
+                  value={!!checkedItems["3"]}
+                  onValueChange={() => toggleCheckbox("3")}
+                  color={!!checkedItems["3"] ? '#4630EB' : undefined}
+              />
+            </View>
+            </Text>
+          </View>    
+
+          {/* Item */}
+          <View style={styles.SectionListItem}>
+            <Text 
+              style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.linkStyle,
+                { color: currentTheme.tabBarInactiveTintColor }
+              ]}
+            >
+            <View style={styles.iconOuterContainer}>
+              <View style={styles.iconContainer}>
+                <Text style={[styles.iconContainerText, { color: currentTheme.grejIconColor }]}>A</Text>
+              </View>
+              <Text style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.SectionHeaderText,
+                {color: currentTheme.grejViAnbefaler}
+              ]}>
+                {/* ITEM TEXT */}
+                {"Tarp"}
+              </Text>
+              <Checkbox
+                  style={styles.checkBox}
+                  value={!!checkedItems["3"]}
+                  onValueChange={() => toggleCheckbox("3")}
+                  color={!!checkedItems["3"] ? '#4630EB' : undefined}
+              />
+            </View>
+            </Text>
+          </View>
+
+          {/* Item */}
+          <View style={styles.SectionListItem}>
+            <Text 
+              style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.linkStyle,
+                { color: currentTheme.tabBarInactiveTintColor }
+              ]}
+            >
+            <View style={styles.iconOuterContainer}>
+              <View style={styles.iconContainer}>
+                <Text style={[styles.iconContainerText, { color: currentTheme.grejIconColor }]}>A</Text>
+              </View>
+              <Text style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.SectionHeaderText,
+                {color: currentTheme.grejViAnbefaler}
+              ]}>
+                {/* ITEM TEXT */}
+                {"Tarp"}
+              </Text>
+              <Checkbox
+                  style={styles.checkBox}
+                  value={!!checkedItems["3"]}
+                  onValueChange={() => toggleCheckbox("3")}
+                  color={!!checkedItems["3"] ? '#4630EB' : undefined}
+              />
+            </View>
+            </Text>
+          </View>
+
+          {/* Item */}
+          <View style={styles.SectionListItem}>
+            <Text 
+              style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.linkStyle,
+                { color: currentTheme.tabBarInactiveTintColor }
+              ]}
+            >
+            <View style={styles.iconOuterContainer}>
+              <View style={styles.iconContainer}>
+                <Text style={[styles.iconContainerText, { color: currentTheme.grejIconColor }]}>A</Text>
+              </View>
+              <Text style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.SectionHeaderText,
+                {color: currentTheme.grejViAnbefaler}
+              ]}>
+                {/* ITEM TEXT */}
+                {"Tarp"}
+              </Text>
+              <Checkbox
+                  style={styles.checkBox}
+                  value={!!checkedItems["3"]}
+                  onValueChange={() => toggleCheckbox("3")}
+                  color={!!checkedItems["3"] ? '#4630EB' : undefined}
+              />
+            </View>
+            </Text>
+          </View>
+
+          {/* Item */}
+          <View style={styles.SectionListItem}>
+            <Text 
+              style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.linkStyle,
+                { color: currentTheme.tabBarInactiveTintColor }
+              ]}
+            >
+            <View style={styles.iconOuterContainer}>
+              <View style={styles.iconContainer}>
+                <Text style={[styles.iconContainerText, { color: currentTheme.grejIconColor }]}>A</Text>
+              </View>
+              <Text style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.SectionHeaderText,
+                {color: currentTheme.grejViAnbefaler}
+              ]}>
+                {/* ITEM TEXT */}
+                {"Tarp"}
+              </Text>
+              <Checkbox
+                  style={styles.checkBox}
+                  value={!!checkedItems["3"]}
+                  onValueChange={() => toggleCheckbox("3")}
+                  color={!!checkedItems["3"] ? '#4630EB' : undefined}
+              />
+            </View>
+            </Text>
+          </View>    
+
+          {/* Item */}
+          <View style={styles.SectionListItem}>
+            <Text 
+              style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.linkStyle,
+                { color: currentTheme.tabBarInactiveTintColor }
+              ]}
+            >
+            <View style={styles.iconOuterContainer}>
+              <View style={styles.iconContainer}>
+                <Text style={[styles.iconContainerText, { color: currentTheme.grejIconColor }]}>A</Text>
+              </View>
+              <Text style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.SectionHeaderText,
+                {color: currentTheme.grejViAnbefaler}
+              ]}>
+                {/* ITEM TEXT */}
+                {"Tarp"}
+              </Text>
+              <Checkbox
+                  style={styles.checkBox}
+                  value={!!checkedItems["3"]}
+                  onValueChange={() => toggleCheckbox("3")}
+                  color={!!checkedItems["3"] ? '#4630EB' : undefined}
+              />
+            </View>
+            </Text>
+          </View>
+
+          {/* Item */}
+          <View style={styles.SectionListItem}>
+            <Text 
+              style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.linkStyle,
+                { color: currentTheme.tabBarInactiveTintColor }
+              ]}
+            >
+            <View style={styles.iconOuterContainer}>
+              <View style={styles.iconContainer}>
+                <Text style={[styles.iconContainerText, { color: currentTheme.grejIconColor }]}>A</Text>
+              </View>
+              <Text style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.SectionHeaderText,
+                {color: currentTheme.grejViAnbefaler}
+              ]}>
+                {/* ITEM TEXT */}
+                {"Tarp"}
+              </Text>
+              <Checkbox
+                  style={styles.checkBox}
+                  value={!!checkedItems["3"]}
+                  onValueChange={() => toggleCheckbox("3")}
+                  color={!!checkedItems["3"] ? '#4630EB' : undefined}
+              />
+            </View>
+            </Text>
+          </View>
+
+          {/* Item */}
+          <View style={styles.SectionListItem}>
+            <Text 
+              style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.linkStyle,
+                { color: currentTheme.tabBarInactiveTintColor }
+              ]}
+            >
+            <View style={styles.iconOuterContainer}>
+              <View style={styles.iconContainer}>
+                <Text style={[styles.iconContainerText, { color: currentTheme.grejIconColor }]}>A</Text>
+              </View>
+              <Text style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.SectionHeaderText,
+                {color: currentTheme.grejViAnbefaler}
+              ]}>
+                {/* ITEM TEXT */}
+                {"Tarp"}
+              </Text>
+              <Checkbox
+                  style={styles.checkBox}
+                  value={!!checkedItems["3"]}
+                  onValueChange={() => toggleCheckbox("3")}
+                  color={!!checkedItems["3"] ? '#4630EB' : undefined}
+              />
+            </View>
+            </Text>
+          </View>
+
+          {/* Item */}
+          <View style={styles.SectionListItem}>
+            <Text 
+              style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.linkStyle,
+                { color: currentTheme.tabBarInactiveTintColor }
+              ]}
+            >
+            <View style={styles.iconOuterContainer}>
+              <View style={styles.iconContainer}>
+                <Text style={[styles.iconContainerText, { color: currentTheme.grejIconColor }]}>A</Text>
+              </View>
+              <Text style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.SectionHeaderText,
+                {color: currentTheme.grejViAnbefaler}
+              ]}>
+                {/* ITEM TEXT */}
+                {"Tarp"}
+              </Text>
+              <Checkbox
+                  style={styles.checkBox}
+                  value={!!checkedItems["3"]}
+                  onValueChange={() => toggleCheckbox("3")}
+                  color={!!checkedItems["3"] ? '#4630EB' : undefined}
+              />
+            </View>
+            </Text>
+          </View>    
+
+        </ScrollView>
       </SafeAreaView>
     </SafeAreaProvider>
   );
@@ -99,12 +788,13 @@ const styles = StyleSheet.create({
   SectionList: {
     width: "100%",
     margin: 10,
+    maxHeight: 600,
+    // backgroundColor: "white",
   },
   ListHeader: {
     fontSize: 30,
     color: "#ff0"
   },
-  
   image: {
     width: '50%',
     height: '100%',
@@ -113,7 +803,6 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "35%",
     padding:10,
-    backgroundColor:"#fff",
     // alignItems: "flex-start",
     // justifyContent: "center",
     maxWidth:300,
@@ -138,7 +827,6 @@ const styles = StyleSheet.create({
   },
   SectionListFooter: {
     width: "90%",
-    borderBottomColor: "black",
     borderBottomWidth: 1,
     marginVertical: 30,
   },

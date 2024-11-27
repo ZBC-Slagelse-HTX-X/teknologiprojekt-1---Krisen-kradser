@@ -6,12 +6,14 @@ export const normalTheme = {
     tabBarActiveTintColor: "#dda15e",
     tabBarInactiveTintColor: "#dda15e",
     bibLinkStyle: "#DDA15E",
-    bibBackground: "#fefae0",
+    bibBackground: "#283618",
     grejLinkStyle: "#000",
-    grejIconColor: "#ac9f0d",
+    grejIconColor: "#dda15e",
     calculatorBackground: "#fefae0",
     redBlack: "red",
-    calculatorButton: "#0000FF"
+    calculatorButton: "#0000FF",
+    newBibBackground: "#fefae0",
+    grejViAnbefaler: "#dda15e",
 }
 
 export const colorBlindTheme = {
@@ -27,5 +29,7 @@ export const colorBlindTheme = {
     grejIconColor: "#fff",
     calculatorBackground: "#fff",
     redBlack: "#000",
-    calculatorButton: "#000"
+    calculatorButton: "#000",
+    newBibBackground: "#fff",
+    grejViAnbefaler: "#000"
 }
