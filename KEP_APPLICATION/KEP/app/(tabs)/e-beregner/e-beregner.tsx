@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Dimensions, ScrollView, Pressable, Platform, TouchableOpacity, Modal } from 'react-native';
+import { View, Text, TextInput, StyleSheet, Dimensions, ScrollView, Pressable, Platform, Modal } from 'react-native';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { Picker } from '@react-native-picker/picker';
 import { useFont } from "@/components/fontContext";
@@ -31,7 +31,7 @@ const App: React.FC = () => {
   }]);
 
   const handleInputChange = (index: number, key: keyof Entry, value: string) => {
-    setEntries(prevEntries => prevEntries.map((entry, i) => 
+    setEntries(prevEntries => prevEntries.map((entry, i) =>
       i === index ? { ...entry, [key]: value } : entry
     ));
   };
@@ -41,8 +41,10 @@ const App: React.FC = () => {
     if (currentEntry.alder && currentEntry.hoejde && currentEntry.vaegt && currentEntry.koen && currentEntry.aktivitetsniveau) {
       let bmr = 0;
       if (currentEntry.koen.toLowerCase() === "mand") {
+        // Harris-Benedict equation men
         bmr = (10 * parseFloat(currentEntry.vaegt)) + (6.25 * parseFloat(currentEntry.hoejde)) - (5 * parseFloat(currentEntry.alder)) + 5;
       } else if (currentEntry.koen.toLowerCase() === "kvinde") {
+        // Harris-Benedict equation women
         bmr = (10 * parseFloat(currentEntry.vaegt)) + (6.25 * parseFloat(currentEntry.hoejde)) - (5 * parseFloat(currentEntry.alder)) - 161;
       }
       const maintenanceCalories = Math.ceil((bmr * parseFloat(currentEntry.aktivitetsniveau)));
@@ -54,7 +56,7 @@ const App: React.FC = () => {
   };
 
   const hideResults = (index: number) => {
-    setEntries(prevEntries => prevEntries.map((entry, i) => 
+    setEntries(prevEntries => prevEntries.map((entry, i) =>
       i === index ? { ...entry, energibehov: null } : entry
     ));
     setShowResults(false);
@@ -75,37 +77,37 @@ const App: React.FC = () => {
 
   const [genderModalVisible, setGenderModalVisible] = useState(false);
   const [activityModalVisible, setActivityModalVisible] = useState(false);
-  
   const { dyslexiaMode } = useFont();
   const { theme } = useTheme();
   const currentTheme = theme === 'normal' ? normalTheme : colorBlindTheme;
-
   const [def_aktivitetsniveau, setDef_aktivitetsniveau] = useState(false);
 
   return (
     <>
-    {def_aktivitetsniveau && (
-    <View style={[styles.defContainer]}>
-    <View style={{alignItems: 'flex-end'}}>
-      <Pressable onPress={() => {setDef_aktivitetsniveau(false);}}>
-        <AntDesign name="close" size={20} style={{zIndex:20}} color="black" />
-      </Pressable>
-    </View>
-    <View>
-      <Text style={[{fontSize: 20, width: 360,top:-18}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Betydning af aktivitetsniveauer</Text>
-      <Text style={[{margin: 2}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Lidt aktiv: Typiske daglige aktiviteter + let motion eller sport 1-3 dage om ugen.</Text>
-      <Text style={[{margin: 2}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Moderat aktiv: Daglige aktiviteter + moderat motion eller sport 3-5 dage om ugen.</Text>
-      <Text style={[{margin: 2}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Aktiv: Daglige aktiviteter + hård motion eller sport 6-7 dage om ugen.</Text>
-      <Text style={[{margin: 2}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Meget aktiv: Daglige aktiviteter + meget hård motion eller sport og et fysisk krævende job.</Text>
-    </View>
-  </View>
+      {/* Definitions container */}
+      {def_aktivitetsniveau && (
+        <View style={[styles.defContainer]}>
+          <View style={{ alignItems: 'flex-end' }}>
+            <Pressable onPress={() => { setDef_aktivitetsniveau(false); }}>
+              <AntDesign name="close" size={20} style={{ zIndex: 20 }} color="black" />
+            </Pressable>
+          </View>
+          <View>
+            <Text style={[{ fontSize: 20, width: 360, top: -18 }, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Betydning af aktivitetsniveauer</Text>
+            <Text style={[{ margin: 2 }, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Lidt aktiv: Typiske daglige aktiviteter + let motion eller sport 1-3 dage om ugen.</Text>
+            <Text style={[{ margin: 2 }, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Moderat aktiv: Daglige aktiviteter + moderat motion eller sport 3-5 dage om ugen.</Text>
+            <Text style={[{ margin: 2 }, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Aktiv: Daglige aktiviteter + hård motion eller sport 6-7 dage om ugen.</Text>
+            <Text style={[{ margin: 2 }, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Meget aktiv: Daglige aktiviteter + meget hård motion eller sport og et fysisk krævende job.</Text>
+          </View>
+        </View>
       )}
 
       <View style={styles.container}>
         <ScrollView style={styles.innerContainer}>
           {entries.map((entry, index) => (
             <View key={index} style={styles.inputContainer}>
-              <Text style={[styles.inputContainerLabel, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Navn<Text style={{color: currentTheme.redBlack}}>*</Text></Text>
+              {/* Name Selector */}
+              <Text style={[styles.inputContainerLabel, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Navn<Text style={{ color: currentTheme.redBlack }}>*</Text></Text>
               <TextInput
                 style={[styles.input, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}
                 onChangeText={(text) => handleInputChange(index, 'navn', text)}
@@ -113,8 +115,8 @@ const App: React.FC = () => {
                 placeholder="Navn"
                 placeholderTextColor="gray"
               />
-              
-              <Text style={[styles.inputContainerLabel, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Alder<Text style={{color: currentTheme.redBlack}}>*</Text></Text>
+              {/* Age Selector */}
+              <Text style={[styles.inputContainerLabel, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Alder<Text style={{ color: currentTheme.redBlack }}>*</Text></Text>
               <TextInput
                 style={[styles.input, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}
                 keyboardType="numeric"
@@ -123,8 +125,8 @@ const App: React.FC = () => {
                 placeholder="Angiv kun antal hele år"
                 placeholderTextColor="gray"
               />
-
-              <Text style={[styles.inputContainerLabel,  { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Højde<Text style={{color: currentTheme.redBlack}}>*</Text></Text>
+              {/* Height Selector */}
+              <Text style={[styles.inputContainerLabel, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Højde<Text style={{ color: currentTheme.redBlack }}>*</Text></Text>
               <TextInput
                 style={[styles.input, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}
                 keyboardType="numeric"
@@ -133,8 +135,8 @@ const App: React.FC = () => {
                 placeholder="Angiv i cm"
                 placeholderTextColor="gray"
               />
-
-              <Text style={[styles.inputContainerLabel, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Vægt<Text style={{color: currentTheme.redBlack}}>*</Text></Text>
+              {/* Weight Selector */}
+              <Text style={[styles.inputContainerLabel, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Vægt<Text style={{ color: currentTheme.redBlack }}>*</Text></Text>
               <TextInput
                 style={[styles.input, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}
                 keyboardType="numeric"
@@ -143,160 +145,157 @@ const App: React.FC = () => {
                 placeholder="Angiv i kg"
                 placeholderTextColor="gray"
               />
-
-              <View style={{flexDirection:"row"}}>
+              {/* Gender Selector */}
+              <View style={{ flexDirection: "row" }}>
                 <Text style={[
-                  styles.inputContainerLabel, 
+                  styles.inputContainerLabel,
                   { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }
                 ]}
                 >
                   Køn
-                  <Text style={{color: currentTheme.redBlack}}>*</Text>
+                  <Text style={{ color: currentTheme.redBlack }}>*</Text>
                 </Text>
               </View>
 
-
-          {Platform.OS === 'ios' ? 
-          (
-            <View style={styles.pickerContainer}>
-              <Pressable onPress={() => setGenderModalVisible(true)}>
-                <Text style={{ fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }}>{entry.koen || "Vælg køn"}</Text>
-              </Pressable>
-              <Modal
-                animationType="slide"
-                transparent={true}
-                visible={genderModalVisible}
-                onRequestClose={() => setGenderModalVisible(false)}
-              >
-                <View style={[styles.modalView, {zIndex: 100}]}>
+              {Platform.OS === 'ios' ?
+                (
+                  <View style={styles.pickerContainer}>
+                    <Pressable onPress={() => setGenderModalVisible(true)}>
+                      <Text style={{ fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }}>{entry.koen || "Vælg køn"}</Text>
+                    </Pressable>
+                    <Modal
+                      animationType="slide"
+                      transparent={true}
+                      visible={genderModalVisible}
+                      onRequestClose={() => setGenderModalVisible(false)}
+                    >
+                      <View style={[styles.modalView, { zIndex: 100 }]}>
+                        <Picker
+                          selectedValue={entry.koen}
+                          onValueChange={(itemValue) => {
+                            handleInputChange(index, 'koen', itemValue);
+                            setGenderModalVisible(false);
+                          }}
+                          style={[styles.pickerModal, { backgroundColor: '' }]}
+                          itemStyle={[{ color: 'black' }, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}
+                        >
+                          <Picker.Item label="Kvinde" value="Kvinde" />
+                          <Picker.Item label="Mand" value="Mand" style={{ color: "#000" }} />
+                        </Picker>
+                      </View>
+                    </Modal>
+                  </View>
+                ) :
+                (
                   <Picker
                     selectedValue={entry.koen}
-                    onValueChange={(itemValue) => {
-                      handleInputChange(index, 'koen', itemValue);
-                      setGenderModalVisible(false);
-                    }}
-                    style={[styles.pickerModal, {backgroundColor: ''}]}
-                    itemStyle={[{color: 'black'}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}
+                    style={styles.input}
+                    onValueChange={(itemValue) => handleInputChange(index, 'koen', itemValue)}
+                    itemStyle={[{ color: 'black' }, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}
                   >
+                    <Picker.Item label="Mand" value="Mand" />
                     <Picker.Item label="Kvinde" value="Kvinde" />
-                    <Picker.Item label="Mand" value="Mand" style={{color:"#000"}}/>
                   </Picker>
-                </View>
-              </Modal>
-            </View>
-            ): 
-            (
-            <Picker
-              selectedValue={entry.koen}
-              style={styles.input}
-              onValueChange={(itemValue) => handleInputChange(index, 'koen', itemValue)}
-              itemStyle={[{color: 'black'}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}
-            >
-              <Picker.Item label="Mand" value="Mand" />
-              <Picker.Item label="Kvinde" value="Kvinde" />
-            </Picker>
-            )
-          }
+                )
+              }
+              {/* Activity Selector + Definitions button */}
+              <View style={{ flexDirection: "row" }}>
+                <Text style={[styles.inputContainerLabel, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Aktivitetsniveau<Text style={{ color: currentTheme.redBlack }}>*</Text></Text>
+                <Pressable style={[styles.defiBtn, { backgroundColor: currentTheme.calculatorButton }]} onPress={() => setDef_aktivitetsniveau(true)}>
+                  <Text style={[{ color: "#fff", fontWeight: 800 }, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Læs definitioner</Text>
+                </Pressable>
+              </View>
 
-          
-          <View style={{flexDirection:"row"}}>
-            <Text style={[styles.inputContainerLabel, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Aktivitetsniveau<Text style={{color: currentTheme.redBlack}}>*</Text></Text>
-            <Pressable style={[styles.defiBtn, {backgroundColor: currentTheme.calculatorButton}]} onPress={() => setDef_aktivitetsniveau(true)}>
-              <Text style={[{color: "#fff", fontWeight: 800}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Læs definitioner</Text>
-            </Pressable>
-          </View>
-
-          {Platform.OS === 'ios' ? 
-          (
-            <View style={styles.pickerContainer}>
-              <Pressable onPress={() => setActivityModalVisible(true)}>
-                <Text style={{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'}}>{entry.aktivitetsniveau || "Vælg aktivitetsniveau"}</Text>
-              </Pressable>
-              <Modal
-                animationType="slide"
-                transparent={true}
-                visible={activityModalVisible}
-                onRequestClose={() => setActivityModalVisible(false)}
-              >
-                <View style={[styles.modalView, {zIndex: 100}]}>
+              {Platform.OS === 'ios' ?
+                (
+                  <View style={styles.pickerContainer}>
+                    <Pressable onPress={() => setActivityModalVisible(true)}>
+                      <Text style={{ fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }}>{entry.aktivitetsniveau || "Vælg aktivitetsniveau"}</Text>
+                    </Pressable>
+                    <Modal
+                      animationType="slide"
+                      transparent={true}
+                      visible={activityModalVisible}
+                      onRequestClose={() => setActivityModalVisible(false)}
+                    >
+                      <View style={[styles.modalView, { zIndex: 100 }]}>
+                        <Picker
+                          selectedValue={entry.aktivitetsniveau}
+                          onValueChange={(itemValue) => {
+                            handleInputChange(index, 'aktivitetsniveau', itemValue);
+                            setActivityModalVisible(false);
+                          }}
+                          style={[styles.pickerModal, { backgroundColor: '' }]}
+                          itemStyle={[{ color: 'black' }, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}
+                        >
+                          <Picker.Item label="Lidt aktiv" value="1.2" />
+                          <Picker.Item label="Moderat aktiv" value="1.55" />
+                          <Picker.Item label="Aktiv" value="1.725" />
+                          <Picker.Item label="Meget Aktiv" value="1.9" />
+                        </Picker>
+                      </View>
+                    </Modal>
+                  </View>
+                ) :
+                (
                   <Picker
                     selectedValue={entry.aktivitetsniveau}
-                    onValueChange={(itemValue) => {
-                      handleInputChange(index, 'aktivitetsniveau', itemValue);
-                      setActivityModalVisible(false);
-                    }}
-                    style={[styles.pickerModal, {backgroundColor: ''}]}
-                    itemStyle={[{color: 'black'}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}
+                    style={styles.input}
+                    onValueChange={(itemValue) => handleInputChange(index, 'aktivitetsniveau', itemValue)}
+                    itemStyle={[{ color: 'black' }, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}
                   >
                     <Picker.Item label="Lidt aktiv" value="1.2" />
                     <Picker.Item label="Moderat aktiv" value="1.55" />
                     <Picker.Item label="Aktiv" value="1.725" />
                     <Picker.Item label="Meget Aktiv" value="1.9" />
                   </Picker>
-                </View>
-              </Modal>
-            </View>
-            ): 
-            (
-            <Picker
-              selectedValue={entry.aktivitetsniveau}
-              style={styles.input}
-              onValueChange={(itemValue) => handleInputChange(index, 'aktivitetsniveau', itemValue)}
-              itemStyle={[{color: 'black'}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}
-            >
-              <Picker.Item label="Lidt aktiv" value="1.2" />
-              <Picker.Item label="Moderat aktiv" value="1.55" />
-              <Picker.Item label="Aktiv" value="1.725" />
-              <Picker.Item label="Meget Aktiv" value="1.9" />
-            </Picker>
-            )
-          }
-
-             
-          <Text style={[styles.inputContainerLabel, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Kostrestriktioner</Text>
-          <TextInput
-            keyboardType="numeric"
-            style={[styles.input, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}
-            onChangeText={(text) => handleInputChange(index, 'restriktioner', text)}
-            value={entry.restriktioner}
-            placeholder="0 - 5"
-            placeholderTextColor="gray"
-            />
+                )
+              }
+              {/* Restrictions Selector */}
+              <Text style={[styles.inputContainerLabel, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Kostrestriktioner</Text>
+              <TextInput
+                keyboardType="numeric"
+                style={[styles.input, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}
+                onChangeText={(text) => handleInputChange(index, 'restriktioner', text)}
+                value={entry.restriktioner}
+                placeholder="0 - 5"
+                placeholderTextColor="gray"
+              />
 
               {/* Calculate Button */}
-              <Pressable style={[styles.buttonStyle, {backgroundColor: currentTheme.calculatorButton}]} onPress={() => handleCalculate(index)}>
-                <Text style={[{color: "#fff", fontWeight: 800}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Calculate</Text>
+              <Pressable style={[styles.buttonStyle, { backgroundColor: currentTheme.calculatorButton }]} onPress={() => handleCalculate(index)}>
+                <Text style={[{ color: "#fff", fontWeight: 800 }, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Calculate</Text>
               </Pressable>
             </View>
           ))}
-          
+
           {/* Add New Person Button */}
-          <Pressable style={[styles.buttonStyle, {backgroundColor: currentTheme.calculatorButton}]} onPress={addNewEntry}>
-            <Text style={[{color: "#fff", fontWeight: 800}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Tilføj en person</Text>
+          <Pressable style={[styles.buttonStyle, { backgroundColor: currentTheme.calculatorButton }]} onPress={addNewEntry}>
+            <Text style={[{ color: "#fff", fontWeight: 800 }, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Tilføj en person</Text>
           </Pressable>
+
         </ScrollView>
 
         {/* Results Section */}
-        {showResults && 
+          {showResults &&
           <View style={[styles.innerContainer]}>
             {entries.map((entry, index) => (
-              entry.energibehov && 
+              entry.energibehov &&
               <View key={index} style={styles.resultContainer}>
                 <Pressable style={[styles.closeWindowStyle]} onPress={() => hideResults(index)}>
                   <AntDesign name="close" size={18} color="black" />
                 </Pressable>
-                <Text style={[{fontSize: 18}, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>{entry.navn}</Text>
+                <Text style={[{ fontSize: 18 }, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>{entry.navn}</Text>
                 {entry.alder && <Text style={{ fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }}>Alder: {entry.alder}</Text>}
                 {entry.energibehov && <Text style={{ fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }}>{entry.energibehov}</Text>}
               </View>
             ))}
           </View>
-        }
+          }
       </View>
     </>
   );
 };
-
 
 const styles = StyleSheet.create({
   container: {
@@ -311,7 +310,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     borderColor: "#DCDCDC",
     borderWidth: 1,
-    height:  (Dimensions.get("window").height) * 0.8,
+    height: (Dimensions.get("window").height) * 0.8,
     margin: 5,
     padding: 10,
   },
@@ -329,7 +328,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 10,
     paddingHorizontal: 8,
-
   },
   resultContainer: {
     zIndex: 10,
@@ -380,23 +378,21 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   defiBtn: {
-    borderRadius:5,
-    paddingHorizontal:2,
-    height:24,
-    justifyContent:"center",
-    alignItems:"center"
+    borderRadius: 5,
+    paddingHorizontal: 2,
+    height: 24,
+    justifyContent: "center",
+    alignItems: "center"
   },
   defContainer: {
     position: 'absolute',
     top: '50%',
     left: '35%',
-    transform: [{ translateX: -Dimensions.get('window').width * 0.25 / 2 }, { translateY: -Dimensions.get('window').height * 0.25 / 2 }], 
+    transform: [{ translateX: -Dimensions.get('window').width * 0.25 / 2 }, { translateY: -Dimensions.get('window').height * 0.25 / 2 }],
     zIndex: 10,
     padding: 10,
     backgroundColor: '#e6e6e6',
     borderRadius: 5,
-    // height:  (Dimensions.get("window").height) * 0.25,
-    // width:  (Dimensions.get("window").width) * 0.25,
   },
 });
 
