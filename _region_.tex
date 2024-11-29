@@ -1,4 +1,4 @@
-%%% PREAMBLE
+\message{ !name(main.tex)}%%% PREAMBLE
 \documentclass[12pt, a4paper]{article}
 %% Packages
 % Layout
@@ -37,25 +37,29 @@
 
 %%% Document management
 \begin{document}
+
+\message{ !name(main.tex) !offset(-3) }
+
 %% Front matter
     \pagenumbering{roman}
     \input{titlepage/titlepage.tex}
     \newpage
 %    \input{preface/preface.tex}
+    \newpage
     \tableofcontents
     \newpage
 %% Main body
     \pagenumbering{arabic}
     \input{section_1/section_1.tex} \newpage
-    \input{section_2/section_2.tex} \newpage
-    \input{section_3/section_3.tex} \newpage
+%    \input{section_2/section_2.tex} \newpage
+%    \input{section_3/section_3.tex} \newpage
     \newpage
 %% Back matter
      \printbibliography[heading=bibintoc,title={Litteraturliste}]
      \begin{appendices} \newpage
-         \section{Projektbeskrivelse \label{appendiks-projektbeskrivels}} \newpage
+         \section{Projektbeskrivelse} \newpage
         \renewcommand*{\thepage}{A\arabic{page}}
-         %\includepdf[pages=-,delta=5 5,frame=true,landscape=true,nup=1x2,pagecommand={\thispagestyle{plain}}]{./project description/project_description.pdf}
+         \includepdf[pages=-,delta=5 5,frame=true,landscape=true,nup=1x2,pagecommand={\thispagestyle{plain}}]{./project description/project_description.pdf}
 %         \renewcommand*{\thepage}{\arabic{page}}
 %         \section{Logbog} \newpage
 %         \renewcommand*{\thepage}{B\arabic{page}}
@@ -63,3 +67,5 @@
 %         \renewcommand*{\thepage}{\arabic{page}}
      \end{appendices}
   \end{document}
+
+\message{ !name(main.tex) !offset(-71) }
