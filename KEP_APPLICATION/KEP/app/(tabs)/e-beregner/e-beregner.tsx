@@ -48,7 +48,8 @@ const App: React.FC = () => {
         bmr = (10 * parseFloat(currentEntry.vaegt)) + (6.25 * parseFloat(currentEntry.hoejde)) - (5 * parseFloat(currentEntry.alder)) - 161;
       }
       const maintenanceCalories = Math.ceil((bmr * parseFloat(currentEntry.aktivitetsniveau)));
-      handleInputChange(index, 'energibehov', `Forsøg at indtage ${maintenanceCalories} kalorier om dagen`);
+      const g_oksekoed = maintenanceCalories / 2.5;
+      handleInputChange(index, 'energibehov', `Forsøg at indtage ${maintenanceCalories} kalorier om dagen (Svare til ${g_oksekoed} g oksekød)`);
     } else {
       handleInputChange(index, 'energibehov', "Noget gik galt med at beregne dit energibehov... Prøv igen");
     }

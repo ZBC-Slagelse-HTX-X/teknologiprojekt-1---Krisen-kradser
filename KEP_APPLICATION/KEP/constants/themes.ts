@@ -10,8 +10,8 @@ export const normalTheme = {
     grejLinkStyle: "#000",
     grejIconColor: "#dda15e",
     calculatorBackground: "#fefae0",
-    redBlack: "red",
-    calculatorButton: "#0000FF",
+    redBlack: "black",
+    calculatorButton: "#000",
     newBibBackground: "#fefae0",
     grejViAnbefaler: "#dda15e",
 }
@@ -28,8 +28,8 @@ export const colorBlindTheme = {
     grejLinkStyle: "#000",
     grejIconColor: "#fff",
     calculatorBackground: "#fff",
-    redBlack: "#000",
-    calculatorButton: "#000",
+    redBlack: "red",
+    calculatorButton: "#0000FF",
     newBibBackground: "#fff",
     grejViAnbefaler: "#000"
 }

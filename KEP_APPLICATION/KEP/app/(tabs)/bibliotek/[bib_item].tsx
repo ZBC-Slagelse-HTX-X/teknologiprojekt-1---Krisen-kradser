@@ -59,7 +59,7 @@ export default function BibItemScreen() {
             <YoutubePlayer
                 key={props.videoId}
                 height={500}
-                width={500}
+                width={350}
                 play={props.playing}
                 videoId={props.videoId}
                 onChangeState={props.onStateChange}
