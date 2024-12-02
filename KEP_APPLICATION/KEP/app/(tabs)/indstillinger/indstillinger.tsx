@@ -9,7 +9,7 @@ import { normalTheme, colorBlindTheme } from "@/constants/themes";
 
 export default function Indstillinger() {
   const { dyslexiaMode, setDyslexiaMode } = useFont();
-  const toggleSwitch = () => setDyslexiaMode(!dyslexiaMode);
+  const toggleSwitch = () => setDyslexiaMode();
 
   const [loaded, error] = useFonts({
     'open-dyslexic': require('@/assets/fonts/open-dyslexic.ttf'),

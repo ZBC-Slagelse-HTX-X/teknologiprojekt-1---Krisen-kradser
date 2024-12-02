@@ -11,9 +11,11 @@ export const normalTheme = {
     grejIconColor: "#dda15e",
     calculatorBackground: "#fefae0",
     redBlack: "black",
+    blackRed: "red",
     calculatorButton: "#000",
     newBibBackground: "#fefae0",
     grejViAnbefaler: "#dda15e",
+    afgrødeBeregnerButton: "#0000FF",
 }
 
 export const colorBlindTheme = {
@@ -29,7 +31,9 @@ export const colorBlindTheme = {
     grejIconColor: "#fff",
     calculatorBackground: "#fff",
     redBlack: "red",
+    blackRed: "black",
     calculatorButton: "#0000FF",
     newBibBackground: "#fff",
-    grejViAnbefaler: "#000"
+    grejViAnbefaler: "#000",
+    afgrødeBeregnerButton: "#000",
 }

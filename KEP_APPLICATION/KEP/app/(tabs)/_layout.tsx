@@ -85,7 +85,7 @@ export default function TabLayout() {
       <Tabs.Screen 
         name="afgrøde-beregner"
         options={{ 
-          title: 'Afgrøde beregner',
+          title: 'Afgrødeberegner',
           headerLeft: () => (
             <Ionicons
               style={{marginLeft:15, marginRight:-10}}

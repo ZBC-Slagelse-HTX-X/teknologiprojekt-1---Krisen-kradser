@@ -20,7 +20,6 @@
                 "text_02": "Vand er også en af de essentielle ting som er nødvendige for at kunne klare sig i 3 døgn i tilfælde af en nødsituation, Anbefalingerne lyder på 3 L pr. person pr. dag, med undtagelse, hvis den mad man har tænkt sig at spise kræver vand, som f.eks. kogning af ris, er det nødvendigt at medregne dette i ens beholdning af vand, men kort sagt, desto mere vand desto bedre. Opbevaring af vandet kan gøres på mange måder, vi anbefaler at indkøbe flaske vand i 1,5L eller 2L beholdere og så løbende udskifte vandet, man kan f.eks. bruge det til at vande blomster. og erstatte det med hanevand. dette sikrer at vandet forbliver friskt, opbevar det mørkt, og køligt hvis muligt.",
                 "text_03": "I en krisesituation er det også vigtigt at man kan holde sig varm, dette kan f.eks. fremgå med indkøb af tæpper og ekstra varmt tøj. en anden god mulighed er at bruge en brændeovn, evt. købe en og få installeret hvis ens boligsituation tillader det. det er vigtigt at man holder sig selv og sit tøj tørt for at holde på varmen.",
                 "text_04": "Viden er en af de lidt mindre håndgribelige essentialer, men kort sagt betyder det at holde sig selv informeret, vi anbefaler at man indkøber en radio med et svinghåndtag, så at man hverken behøver strøm eller batterier. Dette er et essentielt redskab til at kunne holde sig selv informeret om hvad der foregår ude i verden, tanken bag dette er at man ved hvor lang tid den nuværende krise kommer til at vare og hvad regereningen har tænkt sig at gøre og hvilke tiltag de har tænkt sig at tage. det vil formodenligt også være her at evt. evakuerings områder og udviklinger i krisen vil fremgå.",
-                "video_path": "sRDpX4e62Vw"
               },
               {
                 "name": "Mulige Krisesituationer",
@@ -41,6 +40,15 @@
                 "heading_01": "Shelter Sne!",
                 "text_01": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                 "video_path": "761hkoBv0j8"
+              },
+              {
+                "name": "Mad i Naturen", 
+                "sub_name_display":"Gode råd til madlavning i naturen", 
+                "id":"Mad i Naturen", 
+                "sub_id":"GRTMIN",
+                "heading_01": "De Vigtige råd",
+                "text_01": "Vi anbefaler at hvis du står i den situation hvor det bliver nødvendigt for dig at lave mad i naturen at du på forhånd har indkøbt en bålgryde hvis du planlægger at lave mad over bål eller en trangia hvis du ikke har lyst til at lave mad over bål. En anden mulighed for at lave mad i naturen er at indkøbe en jetboil, en jetboil er en rigtigt hurtig og nem måde at koge vand på, det kræver dog at man har mad som man kan lave kun ved brug af varmt vand. Vi har en video der demonstrerer nogle af disse principper.",
+                "video_path": "sRDpX4e62Vw"
               }
             ]
         },
