@@ -1,5 +1,5 @@
 import { Tabs, router, usePathname } from "expo-router";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { Platform } from "react-native";
 import { useFont } from "@/components/fontContext";
 import { useTheme } from "@/components/themeContext";
@@ -81,6 +81,24 @@ export default function TabLayout() {
             <Ionicons name={focused ? 'calculator-sharp' : 'calculator-outline'} color={color} size={24} />
           ),
         }}
+      />
+      <Tabs.Screen 
+        name="afgrøde-beregner"
+        options={{ 
+          title: 'Afgrøde beregner',
+          headerLeft: () => (
+            <Ionicons
+              style={{marginLeft:15, marginRight:-10}}
+              name={backIcon}
+              size={25}
+              color={`${currentTheme.arrowIconColor}`}
+              onPress={() => router.back()}
+            />
+          ),
+          tabBarIcon: ({color, focused}) => (
+            <MaterialCommunityIcons name={focused ? 'food-apple' : 'food-apple-outline'} color={color} size={24} />
+          ),
+        }} 
       />
       
       <Tabs.Screen 

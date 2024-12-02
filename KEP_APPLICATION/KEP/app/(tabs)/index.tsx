@@ -5,8 +5,6 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useFont } from "@/components/fontContext";
 import { useTheme } from "@/components/themeContext";
 import { normalTheme, colorBlindTheme } from "@/constants/themes";
-import DATA from '@/data/grej_data.json';
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Checkbox from 'expo-checkbox';
 import { Image } from 'expo-image' 
 
@@ -15,17 +13,13 @@ export default function Index() {
   const { dyslexiaMode } = useFont();
   const { theme } = useTheme();
   const currentTheme = theme === 'normal' ? colorBlindTheme:normalTheme;
-  
   const [checkedItems, setCheckedItems] = useState<{ [key: string]: boolean }>({});
-
   const toggleCheckbox = (id: string) => {
     setCheckedItems(prev => ({ ...prev, [id]: !prev[id] }));
   };
 
   const blurhash =
   '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[';
-
-
 
   const frontImage = theme === 'normal' 
   ? require("@/assets/images/KEP_BnW.png")
@@ -45,7 +39,7 @@ export default function Index() {
             contentFit="cover"
             source={frontImage}
             placeholder={{ blurhash }}
-            />
+          />
         </View>
         <View style={{marginTop: 20}}>  
           <Text style={[
@@ -92,7 +86,6 @@ export default function Index() {
             </View>
             </Text>
           </View>
-
 
           {/* Item */}
           <View style={styles.SectionListItem}>

@@ -41,7 +41,7 @@ const App: React.FC = () => {
     if (currentEntry.alder && currentEntry.hoejde && currentEntry.vaegt && currentEntry.koen && currentEntry.aktivitetsniveau) {
       let bmr = 0;
       if (currentEntry.koen.toLowerCase() === "mand") {
-        // Harris-Benedict equation men
+        // Harris-Benedict equation Men
         bmr = (10 * parseFloat(currentEntry.vaegt)) + (6.25 * parseFloat(currentEntry.hoejde)) - (5 * parseFloat(currentEntry.alder)) + 5;
       } else if (currentEntry.koen.toLowerCase() === "kvinde") {
         // Harris-Benedict equation women
