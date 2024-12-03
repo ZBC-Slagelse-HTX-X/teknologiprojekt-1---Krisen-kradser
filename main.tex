@@ -42,14 +42,15 @@
     \input{titlepage/titlepage.tex}
     \newpage
 %    \input{preface/preface.tex}
+    \input{abstract.tex}
     \tableofcontents
     \newpage
 %% Main body
     \pagenumbering{arabic}
-    \input{section_1/section_1.tex} \newpage
-    \input{section_2/section_2.tex} \newpage
+    \input{section_1/section_1.tex} \newpage % forord
+    \input{section_2/section_2.tex} \newpage % 
     \input{section_3/section_3.tex} \newpage
-    
+    \input{section}
     \newpage
 %% Back matter
      \printbibliography[heading=bibintoc,title={Litteraturliste}]
