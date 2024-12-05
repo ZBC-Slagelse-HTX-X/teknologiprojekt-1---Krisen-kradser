@@ -1,0 +1,21 @@
+\section{Produktudformning}
+\subsection{Overordnet}
+Koden er opbygget, således at den kan skrives som en pseudo-webapplikation, sidenhen anvendes en "bro", der gør til en native applikation og kompatibel med de mest almindelige styresystemer, herunder IOS (Apples mobile styresystem) og Android\footnote{Selvsamme teknik anvendes af højtprofilerede virksomheder, såsom Facebook, Discord og Tesla. Læs mere her: \href{https://reactnative.dev/}{reactnative.dev}}.
+
+\subsection{Kodestack}
+\subsubsection{Framework - React Native}
+React Native er et framework\footnote{Et framework er en samling af biblioteker, der gør det lettere at skrive kode på en standardiseret måde, hvori en masse valg er taget på forhånd}, der muliggør udvikling af native\footnote{Native betyder at applikationen kører direkte på enheden} applikationer til IOS og Android. 
+\subsubsection{Sub-Framework - Expo}
+Expo er et framework, der er bygget omkring React Native, der muliggør at køre en pågældende React Native-applikation igennem deres egen platform, Expo Go, hvorfor man ikke behøver at kompile koden, dvs. oversætte programmeringskoden til eksekverbar maskinekode, efter hver ændring, såfremt man vil teste den på en fysisk enhed. 
+\subsubsection{Runtime - Node.js}
+Node.js er den runtime, der muliggør at applikationen kan køre på en enhed fremfor i en browser, da programmeringssproget JavaScript oprindeligt var designet til at køre udelukkende i et browser-miljø. 
+\subsubsection{Database - MongoDB*}
+Ideen var oprindeligt at have en meget let applikation, der kunne nedhentes fra et styresystems nativ app-bibliotek, hvorefter denne ville prompte brugeren til at nedhente ekstrapakker, fx videoer og manualer, fra vores egen server, som skulle være administreret via MongoDB. MongoDB er en program, som tillader en at lave og administrere enNoSQL-database, hvilket er en mere fleksibel database end traditionelle SQL-databaser. 
+\subsubsection{Programmeringsprog - Typescript}
+Typescript er et programmeringssprog udviklet af Microsoft, som bygger på JavaScript. Typescipt bruger stærke datatyper, hvilket vil sige, at datatypen angives per data. Typescript anvendes i denne applikation, fordi det er et kompilersprog, hvilket vil sige, at fejl kan blive fanget, når koden kompileres, fremfor i runtime, mens programmet kører, hvilket er en stor fordel i programmeringsprocessen, da det hindrer, at der kommer oversete fejl i koden.
+\subsection{Brugergrænseflade}
+Brugergrænsefladen er det, brugeren oplever, når han interagerer med applikationen. Brugergrænsefladen er blevet tegnet i Figma, et program, som er speciallavet til at konstruere brugergrænseflader, bl.a. har den prælavede elementer, fx knapper og tekstinputfelter, desuden kan dette gøres interaktivt. 
+\subsubsection{Konceptdesign}
+Jf. appendiks INSERT FIGURE er følgende skitser blevet udarbejdet. Herefter er disse blevet implementeret i selve applikationen. Brugergrænseflade består primært af en bjælke, der er placeret i bunden af skærmen, hvorfra brugeren kan navigere mellem forskellige sider.
+\subsubsection{Design}
+\subsection{Kodegennemgang}
