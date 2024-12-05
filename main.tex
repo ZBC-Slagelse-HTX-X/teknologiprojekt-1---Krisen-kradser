@@ -57,12 +57,13 @@
 %% Back matter
      \printbibliography[heading=bibintoc,title={Litteraturliste}]
      \begin{appendices} \newpage
-         \section{Projektbeskrivelse \label{appendiks-projektbeskrivels}} \newpage
+         \section{Projektbeskrivelse \label{apx:projektbeskrivels}} \newpage
         \renewcommand*{\thepage}{A\arabic{page}}
-         %\includepdf[pages=-,delta=5 5,frame=true,landscape=true,nup=1x2,pagecommand={\thispagestyle{plain}}]{./project description/project_description.pdf}
-%         \renewcommand*{\thepage}{\arabic{page}}
-%         \section{Logbog} \newpage
-%         \renewcommand*{\thepage}{B\arabic{page}}
+        \includepdf[pages=-,delta=5 5,frame=true,landscape=true,nup=1x2,pagecommand={\thispagestyle{plain}}]{./project description/project_description.pdf}
+        \section{Konceptart} \label{apx:konceptart} \newpage
+        \renewcommand*{\thepage}{B\arabic{page}}
+        \includepdf[pages=-,delta=5 5,frame=true,landscape=true,nup=1x2,pagecommand={\thispagestyle{plain}}]{./concept_art/concept_art.pdf}
+        % \renewcommand*{\thepage}{B\arabic{page}}
 %         \includepdf[pages=-,delta=5 5,frame=true,landscape=true,nup=1x2,pagecommand={\thispagestyle{plain}}]{Log/log.pdf}
 %         \renewcommand*{\thepage}{\arabic{page}}
      \end{appendices}
