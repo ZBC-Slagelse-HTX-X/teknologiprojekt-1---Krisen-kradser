@@ -16,7 +16,6 @@ export default function Layout() {
       backgroundColor: currentTheme.newBibBackground
     }}>
       <Header />
-      
       <View style={{flex: 1, width: "50%"}}>
         <Slot />
       </View>

@@ -1,9 +1,6 @@
-import { View, Text, StyleSheet, Image, ScrollView, Button, Alert } from 'react-native';
-import {useLocalSearchParams, usePathname} from 'expo-router';
+import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
+import { useLocalSearchParams } from 'expo-router';
 import { useFont } from "@/components/fontContext";
-import { useVideoPlayer, VideoView } from 'expo-video';
-import { useEvent } from 'expo';
-import { VideoSource } from 'expo-video';
 import { useTheme } from "@/components/themeContext";
 import { normalTheme, colorBlindTheme } from "@/constants/themes";
 import React, { useState, useCallback, useEffect, useReducer } from "react";
@@ -13,7 +10,7 @@ import { useFocusEffect } from '@react-navigation/native';
 interface VideoPlayerProps {
     videoId: string;
     playing: boolean;
-    onStateChange: (state: any) => void;  // Here, assuming 'state' can be any type for simplicity, but ideally, you'd define what 'state' should look like.
+    onStateChange: (state: any) => void;
 }
 
 export default function BibItemScreen() {
@@ -25,7 +22,6 @@ export default function BibItemScreen() {
         video_path
     } = useLocalSearchParams();
     
-    const currentPath = usePathname();
     const { dyslexiaMode } = useFont();
     const { theme } = useTheme();
     const currentTheme = theme === 'normal' ? colorBlindTheme:normalTheme;
@@ -41,8 +37,7 @@ export default function BibItemScreen() {
 
     useFocusEffect(
         React.useCallback(() => {
-            // This runs when the screen comes into focus
-            setPlaying(false); // Reset video state if needed
+            setPlaying(false); 
         }, [])
     );
 
@@ -87,14 +82,7 @@ export default function BibItemScreen() {
                 <Text style={{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'}}>{text_02}</Text>
             </View>
         </ScrollView>
-        
-        {/* <View style={styles.containerChild}>
-            <Image 
-                style={{width:"100%", height:"100%"}}
-                source={require('@/assets/images/icon.png')}
-            />
-        </View>
-         */}
+
         <ScrollView style={styles.containerChild}>
             <View style={styles.headingContainer}>
                 <Text style={[{fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System'},styles.heading]}>{ heading_03 }</Text>
@@ -162,11 +150,11 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
       },
-      video: {
+    video: {
         width: 350,
         height: 275,
-      },
-      controlsContainer: {
-        padding: 10,
-      },
+    },
+    controlsContainer: {
+    padding: 10,
+    },
 })

@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Text, View, StyleSheet, FlatList, Pressable, ScrollView } from "react-native";
+import { Text, View, StyleSheet, ScrollView } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useFont } from "@/components/fontContext";
 import { useTheme } from "@/components/themeContext";
@@ -48,7 +48,6 @@ export default function Index() {
             { color: currentTheme.fontColor },
             { fontWeight: 600 }
           ]}>
-              {/* Krisemanual- og ernæringsberegningsprogram (KEP) */}
               Hvem er vi Tekst sektion
           </Text>
         </View>
@@ -118,7 +117,6 @@ export default function Index() {
             </Text>
           </View>
 
-
           {/* Item */}
           <View style={styles.SectionListItem}>
             <Text 
@@ -169,7 +167,7 @@ export default function Index() {
                 {color: currentTheme.grejViAnbefaler}
               ]}>
                 {/* ITEM TEXT */}
-                {"Tarp"}
+                {"Bålgryde"}
               </Text>
               <Checkbox
                   style={styles.checkBox}
@@ -200,7 +198,7 @@ export default function Index() {
                 {color: currentTheme.grejViAnbefaler}
               ]}>
                 {/* ITEM TEXT */}
-                {"Tarp"}
+                {"Batteriradio"}
               </Text>
               <Checkbox
                   style={styles.checkBox}
@@ -231,7 +229,7 @@ export default function Index() {
                 {color: currentTheme.grejViAnbefaler}
               ]}>
                 {/* ITEM TEXT */}
-                {"Tarp"}
+                {"Drybag"}
               </Text>
               <Checkbox
                   style={styles.checkBox}
@@ -262,7 +260,7 @@ export default function Index() {
                 {color: currentTheme.grejViAnbefaler}
               ]}>
                 {/* ITEM TEXT */}
-                {"Tarp"}
+                {"Elastiksnor"}
               </Text>
               <Checkbox
                   style={styles.checkBox}
@@ -293,7 +291,7 @@ export default function Index() {
                 {color: currentTheme.grejViAnbefaler}
               ]}>
                 {/* ITEM TEXT */}
-                {"Tarp"}
+                {"Førstehjælpsgrej"}
               </Text>
               <Checkbox
                   style={styles.checkBox}
@@ -324,7 +322,7 @@ export default function Index() {
                 {color: currentTheme.grejViAnbefaler}
               ]}>
                 {/* ITEM TEXT */}
-                {"Tarp"}
+                {"Gas"}
               </Text>
               <Checkbox
                   style={styles.checkBox}
@@ -355,7 +353,7 @@ export default function Index() {
                 {color: currentTheme.grejViAnbefaler}
               ]}>
                 {/* ITEM TEXT */}
-                {"Tarp"}
+                {"Jetboil"}
               </Text>
               <Checkbox
                   style={styles.checkBox}
@@ -386,7 +384,7 @@ export default function Index() {
                 {color: currentTheme.grejViAnbefaler}
               ]}>
                 {/* ITEM TEXT */}
-                {"Tarp"}
+                {"Knebelpres"}
               </Text>
               <Checkbox
                   style={styles.checkBox}
@@ -417,7 +415,7 @@ export default function Index() {
                 {color: currentTheme.grejViAnbefaler}
               ]}>
                 {/* ITEM TEXT */}
-                {"Tarp"}
+                {"Kædesav"}
               </Text>
               <Checkbox
                   style={styles.checkBox}
@@ -448,7 +446,7 @@ export default function Index() {
                 {color: currentTheme.grejViAnbefaler}
               ]}>
                 {/* ITEM TEXT */}
-                {"Tarp"}
+                {"Liggeunderlag"}
               </Text>
               <Checkbox
                   style={styles.checkBox}
@@ -479,7 +477,7 @@ export default function Index() {
                 {color: currentTheme.grejViAnbefaler}
               ]}>
                 {/* ITEM TEXT */}
-                {"Tarp"}
+                {"Lighter"}
               </Text>
               <Checkbox
                   style={styles.checkBox}
@@ -510,7 +508,7 @@ export default function Index() {
                 {color: currentTheme.grejViAnbefaler}
               ]}>
                 {/* ITEM TEXT */}
-                {"Tarp"}
+                {"Lommelygte"}
               </Text>
               <Checkbox
                   style={styles.checkBox}
@@ -541,7 +539,7 @@ export default function Index() {
                 {color: currentTheme.grejViAnbefaler}
               ]}>
                 {/* ITEM TEXT */}
-                {"Tarp"}
+                {"Pløkker"}
               </Text>
               <Checkbox
                   style={styles.checkBox}
@@ -572,7 +570,7 @@ export default function Index() {
                 {color: currentTheme.grejViAnbefaler}
               ]}>
                 {/* ITEM TEXT */}
-                {"Tarp"}
+                {"Reb"}
               </Text>
               <Checkbox
                   style={styles.checkBox}
@@ -603,7 +601,7 @@ export default function Index() {
                 {color: currentTheme.grejViAnbefaler}
               ]}>
                 {/* ITEM TEXT */}
-                {"Tarp"}
+                {"Regntøj"}
               </Text>
               <Checkbox
                   style={styles.checkBox}
@@ -634,7 +632,7 @@ export default function Index() {
                 {color: currentTheme.grejViAnbefaler}
               ]}>
                 {/* ITEM TEXT */}
-                {"Tarp"}
+                {"Stropper"}
               </Text>
               <Checkbox
                   style={styles.checkBox}
@@ -665,7 +663,7 @@ export default function Index() {
                 {color: currentTheme.grejViAnbefaler}
               ]}>
                 {/* ITEM TEXT */}
-                {"Tarp"}
+                {"Støvler"}
               </Text>
               <Checkbox
                   style={styles.checkBox}
@@ -696,7 +694,7 @@ export default function Index() {
                 {color: currentTheme.grejViAnbefaler}
               ]}>
                 {/* ITEM TEXT */}
-                {"Tarp"}
+                {"Ur"}
               </Text>
               <Checkbox
                   style={styles.checkBox}
@@ -727,7 +725,7 @@ export default function Index() {
                 {color: currentTheme.grejViAnbefaler}
               ]}>
                 {/* ITEM TEXT */}
-                {"Tarp"}
+                {"Vanddunk"}
               </Text>
               <Checkbox
                   style={styles.checkBox}
@@ -758,7 +756,7 @@ export default function Index() {
                 {color: currentTheme.grejViAnbefaler}
               ]}>
                 {/* ITEM TEXT */}
-                {"Tarp"}
+                {"Økse"}
               </Text>
               <Checkbox
                   style={styles.checkBox}
@@ -768,8 +766,7 @@ export default function Index() {
               />
             </View>
             </Text>
-          </View>    
-
+          </View>
         </ScrollView>
       </SafeAreaView>
     </SafeAreaProvider>
@@ -851,5 +848,4 @@ const styles = StyleSheet.create({
     marginRight: 15,
     backgroundColor: 'transparent',
   },
-  
 })

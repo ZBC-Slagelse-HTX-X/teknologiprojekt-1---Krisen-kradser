@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import Indstillinger from "@/app/(tabs)/indstillinger/indstillinger";
 
 export default function Layout() {

@@ -9,7 +9,6 @@ export default function TabLayout() {
   const backIcon = Platform.OS === "ios" ? "chevron-back" : "arrow-back-sharp";
   const currentPath = usePathname();
   const { dyslexiaMode } = useFont();
-
   const { theme } = useTheme();
   const currentTheme = theme === 'normal' ? colorBlindTheme:normalTheme;
 
