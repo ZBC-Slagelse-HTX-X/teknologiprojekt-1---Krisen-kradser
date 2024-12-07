@@ -18,4 +18,56 @@ Brugergrænsefladen er det, brugeren oplever, når han interagerer med applikati
 \subsubsection{Konceptdesign}
 Jf. appendiks INSERT FIGURE er følgende skitser blevet udarbejdet. Herefter er disse blevet implementeret i selve applikationen. Brugergrænseflade består primært af en bjælke, der er placeret i bunden af skærmen, hvorfra brugeren kan navigere mellem forskellige sider.
 \subsubsection{Design}
+
 \subsection{Kodegennemgang}
+Koden som bygger applikationen, vil blive gennemgået nedenfor.
+\subsubsection{Filstruktur}
+
+Måden hvorpå filerne er struktureret, er altafgørende for kodens funktionalitet og læsbarhed. Da frameworket React Native, kigger efter spicifikke filstrukturer, til at køre og vise den dertilhørende kode det korrekte sted.
+\begin{figure}[H]
+    \dirtree{%
+        .1 /.
+        .2 {\color{blue}{app}}.
+        .2 {\color{blue}{assets}}.
+        .2 {\color{blue}{components}}.
+        .2 {\color{blue}{constants}}.
+        .2 {\color{blue}{data}}
+        .2 {\color{blue}{hooks}}.
+        .2 {\color{blue}{node\_modules}}.
+        .2 {\color{blue}{scripts}}.
+        .2 .gitignore.
+        .2 app.json.
+        .2 babel.config.js.
+        .2 eas.json.
+        .2 package-lock.json.
+        .2 package.json.
+        .2 tsconfig.json.
+       }
+    \caption{Top-level filstrukturen for applikationen. Mapperne er farvet blåt}
+    \label{fig:tlprojstruct}
+\end{figure}
+
+Måden hvorpå brugen navigerer applikationen, er ved at bruge vores navigationsbar, som er placeret i bunden af skærmen. 
+Filstrukturen som viser navigationsbaren, ser således ud i kodebasen:
+\begin{figure}[H]
+    \dirtree{%
+        .1 /.
+        .2 {\color{blue}{app}}.
+        .2 {\color{blue}{assets}}.
+        .2 {\color{blue}{components}}.
+        .2 {\color{blue}{constants}}.
+        .2 {\color{blue}{data}}
+        .2 {\color{blue}{hooks}}.
+        .2 {\color{blue}{node\_modules}}.
+        .2 {\color{blue}{scripts}}.
+        .2 .gitignore.
+        .2 app.json.
+        .2 babel.config.js.
+        .2 eas.json.
+        .2 package-lock.json.
+        .2 package.json.
+        .2 tsconfig.json.
+       }
+    \caption{Top-level filstrukturen for applikationen. Mapperne er farvet blåt}
+    \label{fig:tlprojstruct}
+\end{figure}
