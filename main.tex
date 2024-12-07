@@ -6,6 +6,9 @@
 \usepackage[margin=2.5cm]{geometry} % Adjust margins to comply with 2,5cm standard
 \usepackage{float}
 \usepackage{pdflscape}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
 
 % Font management (for math and normal text)
 \usepackage{sourcesanspro} % Changes font to Source Sans Pro
@@ -44,24 +47,25 @@
     \newpage
 %    \input{preface/preface.tex}
     \input{abstract.tex}
+    \input{kap_forord/section_1.tex} \newpage % forord
     \tableofcontents
     \newpage
 %% Main body
     \pagenumbering{arabic}
-    \input{section_1/section_1.tex} \newpage % forord
-    \input{section_2/section_2.tex} \newpage % 
-    \input{section_3/section_3.tex} \newpage
-    \input{section_4/section_4.tex} \newpage
-    \input{section_5/section_5.tex} \newpage
-    \input{section_6/section_6.tex} \newpage
-    \newpage
+    \input{kap_projektstyring/section_2.tex} \newpage % 
+    \input{kap_problemidentifikation/section_3.tex} \newpage
+    \input{kap_problemanalyse/section_4.tex} \newpage
+    \input{kap_produktprincip/section_5.tex} \newpage
+    \input{kap_produktudformning/section_6.tex} \newpage
 %% Back matter
      \printbibliography[heading=bibintoc,title={Litteraturliste}]
      \begin{appendices} \newpage
-         \section{Projektbeskrivelse \label{apx:projektbeskrivels}} \newpage
+        \renewcommand{\thesubsection}{\Alph{subsection}}
+        \subsection{Projektbeskrivelse \label{apx:projektbeskrivels}} \newpage
         \renewcommand*{\thepage}{A\arabic{page}}
         \includepdf[pages=-,delta=5 5,frame=true,landscape=true,nup=1x2,pagecommand={\thispagestyle{plain}}]{./project description/project_description.pdf}
-        \section{Konceptart} \label{apx:konceptart} \newpage
+        \renewcommand*{\thepage}{\arabic{page}}
+        \subsection{Konceptart} \label{apx:konceptart} \newpage
         \renewcommand*{\thepage}{B\arabic{page}}
         \includepdf[pages=-,delta=5 5,frame=true,landscape=true,nup=1x2,pagecommand={\thispagestyle{plain}}]{./concept_art/concept_art.pdf}
         % \renewcommand*{\thepage}{B\arabic{page}}
