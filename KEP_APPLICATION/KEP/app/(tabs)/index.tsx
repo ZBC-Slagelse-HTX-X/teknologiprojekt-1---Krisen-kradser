@@ -48,7 +48,7 @@ export default function Index() {
             { color: currentTheme.fontColor },
             { fontWeight: 600 }
           ]}>
-              Hvem er vi Tekst sektion
+              KEP står for Krisemanual og ernæringsberegningsprogram. Formålet er at levere information gennem et stort bilbiotek om hvad man skal gøre før og under en krise, og gode evner at tillære sig, samtidig med at levere kostråd.
           </Text>
         </View>
       </View>
@@ -74,7 +74,7 @@ export default function Index() {
                 {color: currentTheme.grejViAnbefaler}
               ]}>
                 {/* ITEM TEXT */}
-                {"Dolk"}
+                {"Batteriradio"}
               </Text>
               <Checkbox
                   style={styles.checkBox}
@@ -105,7 +105,7 @@ export default function Index() {
                 {color: currentTheme.grejViAnbefaler}
               ]}>
                 {/* ITEM TEXT */}
-                {"Sovepose"}
+                {"Bålgryde"}
               </Text>
               <Checkbox
                   style={styles.checkBox}
@@ -136,69 +136,7 @@ export default function Index() {
                 {color: currentTheme.grejViAnbefaler}
               ]}>
                 {/* ITEM TEXT */}
-                {"Tarp"}
-              </Text>
-              <Checkbox
-                  style={styles.checkBox}
-                  value={!!checkedItems["3"]}
-                  onValueChange={() => toggleCheckbox("3")}
-                  color={!!checkedItems["3"] ? '#4630EB' : undefined}
-              />
-            </View>
-            </Text>
-          </View>
-
-          {/* Item */}
-          <View style={styles.SectionListItem}>
-            <Text 
-              style={[
-                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
-                styles.linkStyle,
-                { color: currentTheme.tabBarInactiveTintColor }
-              ]}
-            >
-            <View style={styles.iconOuterContainer}>
-              <View style={styles.iconContainer}>
-                <Text style={[styles.iconContainerText, { color: currentTheme.grejIconColor }]}>A</Text>
-              </View>
-              <Text style={[
-                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
-                styles.SectionHeaderText,
-                {color: currentTheme.grejViAnbefaler}
-              ]}>
-                {/* ITEM TEXT */}
-                {"Bålgryde"}
-              </Text>
-              <Checkbox
-                  style={styles.checkBox}
-                  value={!!checkedItems["3"]}
-                  onValueChange={() => toggleCheckbox("3")}
-                  color={!!checkedItems["3"] ? '#4630EB' : undefined}
-              />
-            </View>
-            </Text>
-          </View>
-
-          {/* Item */}
-          <View style={styles.SectionListItem}>
-            <Text 
-              style={[
-                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
-                styles.linkStyle,
-                { color: currentTheme.tabBarInactiveTintColor }
-              ]}
-            >
-            <View style={styles.iconOuterContainer}>
-              <View style={styles.iconContainer}>
-                <Text style={[styles.iconContainerText, { color: currentTheme.grejIconColor }]}>A</Text>
-              </View>
-              <Text style={[
-                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
-                styles.SectionHeaderText,
-                {color: currentTheme.grejViAnbefaler}
-              ]}>
-                {/* ITEM TEXT */}
-                {"Batteriradio"}
+                {"Dolk"}
               </Text>
               <Checkbox
                   style={styles.checkBox}
@@ -270,7 +208,7 @@ export default function Index() {
               />
             </View>
             </Text>
-          </View>    
+          </View>
 
           {/* Item */}
           <View style={styles.SectionListItem}>
@@ -332,7 +270,7 @@ export default function Index() {
               />
             </View>
             </Text>
-          </View>
+          </View>    
 
           {/* Item */}
           <View style={styles.SectionListItem}>
@@ -394,7 +332,7 @@ export default function Index() {
               />
             </View>
             </Text>
-          </View>    
+          </View>
 
           {/* Item */}
           <View style={styles.SectionListItem}>
@@ -456,7 +394,7 @@ export default function Index() {
               />
             </View>
             </Text>
-          </View>
+          </View>    
 
           {/* Item */}
           <View style={styles.SectionListItem}>
@@ -518,7 +456,7 @@ export default function Index() {
               />
             </View>
             </Text>
-          </View>    
+          </View>
 
           {/* Item */}
           <View style={styles.SectionListItem}>
@@ -580,7 +518,7 @@ export default function Index() {
               />
             </View>
             </Text>
-          </View>
+          </View>    
 
           {/* Item */}
           <View style={styles.SectionListItem}>
@@ -632,7 +570,69 @@ export default function Index() {
                 {color: currentTheme.grejViAnbefaler}
               ]}>
                 {/* ITEM TEXT */}
+                {"Sovepose"}
+              </Text>
+              <Checkbox
+                  style={styles.checkBox}
+                  value={!!checkedItems["3"]}
+                  onValueChange={() => toggleCheckbox("3")}
+                  color={!!checkedItems["3"] ? '#4630EB' : undefined}
+              />
+            </View>
+            </Text>
+          </View>
+
+          {/* Item */}
+          <View style={styles.SectionListItem}>
+            <Text 
+              style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.linkStyle,
+                { color: currentTheme.tabBarInactiveTintColor }
+              ]}
+            >
+            <View style={styles.iconOuterContainer}>
+              <View style={styles.iconContainer}>
+                <Text style={[styles.iconContainerText, { color: currentTheme.grejIconColor }]}>A</Text>
+              </View>
+              <Text style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.SectionHeaderText,
+                {color: currentTheme.grejViAnbefaler}
+              ]}>
+                {/* ITEM TEXT */}
                 {"Stropper"}
+              </Text>
+              <Checkbox
+                  style={styles.checkBox}
+                  value={!!checkedItems["3"]}
+                  onValueChange={() => toggleCheckbox("3")}
+                  color={!!checkedItems["3"] ? '#4630EB' : undefined}
+              />
+            </View>
+            </Text>
+          </View>
+
+          {/* Item */}
+          <View style={styles.SectionListItem}>
+            <Text 
+              style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.linkStyle,
+                { color: currentTheme.tabBarInactiveTintColor }
+              ]}
+            >
+            <View style={styles.iconOuterContainer}>
+              <View style={styles.iconContainer}>
+                <Text style={[styles.iconContainerText, { color: currentTheme.grejIconColor }]}>A</Text>
+              </View>
+              <Text style={[
+                { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' },
+                styles.SectionHeaderText,
+                {color: currentTheme.grejViAnbefaler}
+              ]}>
+                {/* ITEM TEXT */}
+                {"Støvler"}
               </Text>
               <Checkbox
                   style={styles.checkBox}
@@ -663,7 +663,7 @@ export default function Index() {
                 {color: currentTheme.grejViAnbefaler}
               ]}>
                 {/* ITEM TEXT */}
-                {"Støvler"}
+                {"Tarp"}
               </Text>
               <Checkbox
                   style={styles.checkBox}
