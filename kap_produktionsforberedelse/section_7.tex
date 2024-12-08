@@ -1,5 +1,8 @@
 \section{Produktionsforberedelse \label{sec:produktionsforberedelse}}
-\subsection{Serveropsætning}
+\subsection{Serveropsætning \label{sec:serveropsætning}}
+\paragraph{Serverhosting} Da der heri projektet er tale om en applikation, der skal kunne hente data, fx tekst, videoer og billeder, fra en ekstern server, skal sådan en selvsagt bruges. Hertil er det meningen, at KEP skal hoste sin egen server, som så ville kunne håndtere disse data og udsende dem til forbruger. 
+\paragraph{MongoDB}
+Hertil ville MongoDB være anvendt til at administrere dataene. Læs mere om dette i kapitlet om Database \ref{sec:mongodb}.
 % Skriv noget om serveropsætningen i Bias hjem, herunder racket. Herefter henvis til dettte i kapitlet om bibliotekskoden ift. reel implementering af datakald, fremfor JSON-mock-up.
 \subsection{Betatesting || åben Quality Assurance}
-Alex was here.
+For at sikre kvaliteten af produktet, vil programmet bliver betatestet\footnote{>>Betatesting<< er en form for test, hvor brugere ude i den virkelige verden får lov at afprøve produktet, så de kan give feedback, hvor eventuelle mangler kan rettes op på.}. Perioden, hvori programmet betatestes, vil det være frit tilgængeligt for alle med det forbehold, at de ikke er kunder, hvorfor KEP heller ikke kan holdes ansvarlig for eventuelle mangler eller fejl. Læs mere om overvejelser af ansvar og etik i kapitlet om \ref{sec:etik-og-ansvar}.
