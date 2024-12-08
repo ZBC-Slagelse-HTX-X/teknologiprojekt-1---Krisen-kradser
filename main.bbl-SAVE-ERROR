@@ -1,5 +1,5 @@
 % $ biblatex auxiliary file $
-% $ biblatex bbl format version 3.3 $
+% $ biblatex bbl format version 3.2 $
 % Do not modify the above lines!
 %
 % This is an auxiliary file used by the 'biblatex' package.
@@ -16,5 +16,173 @@
   {}
 \endgroup
 
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global}
+    \entry{krisemanual}{online}{}
+      \list{organization}{1}{%
+        {Beredskabstyrelsen}%
+      }
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labeltitlesource}{title}
+      \field{title}{Forberedt på kriser}
+      \field{urlday}{28}
+      \field{urlmonth}{11}
+      \field{urlyear}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.brs.dk/globalassets/brs---beredskabsstyrelsen/dokumenter/forberedt/--forberedt_paa_kriser_lowres-.pdf
+      \endverb
+      \verb{url}
+      \verb https://www.brs.dk/globalassets/brs---beredskabsstyrelsen/dokumenter/forberedt/--forberedt_paa_kriser_lowres-.pdf
+      \endverb
+    \endentry
+    \entry{EE-artikel}{online}{}
+      \list{organization}{1}{%
+        {Wikipedia}%
+      }
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labeltitlesource}{title}
+      \field{title}{Energy expenditure}
+      \field{urlday}{12}
+      \field{urlmonth}{7}
+      \field{urlyear}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://en.wikipedia.org/wiki/Energy_expenditure
+      \endverb
+      \verb{url}
+      \verb https://en.wikipedia.org/wiki/Energy_expenditure
+      \endverb
+    \endentry
+    \entry{BMR-artikel}{online}{}
+      \list{organization}{1}{%
+        {Wikipedia}%
+      }
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labeltitlesource}{title}
+      \field{title}{Basal metabolic rate}
+      \field{urlday}{12}
+      \field{urlmonth}{7}
+      \field{urlyear}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://en.wikipedia.org/wiki/Basal_metabolic_rate
+      \endverb
+      \verb{url}
+      \verb https://en.wikipedia.org/wiki/Basal_metabolic_rate
+      \endverb
+    \endentry
+    \entry{Harris-Benedict-formel}{online}{}
+      \list{organization}{1}{%
+        {Wikipedia}%
+      }
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labeltitlesource}{title}
+      \field{title}{Harris-Benedict equation}
+      \field{urlday}{12}
+      \field{urlmonth}{7}
+      \field{urlyear}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://en.wikipedia.org/wiki/Harris-Benedict_equation
+      \endverb
+      \verb{url}
+      \verb https://en.wikipedia.org/wiki/Harris-Benedict_equation
+      \endverb
+    \endentry
+    \entry{OMNI-calc}{online}{}
+      \name{author}{2}{}{%
+        {{hash=48442d354010f4f7f4ea4ced0c2dc676}{%
+           family={MD},
+           familyi={M\bibinitperiod},
+           given={Aleksandra\bibnamedelima Zajac},
+           giveni={A\bibinitperiod\bibinitdelim Z\bibinitperiod}}}%
+        {{hash=8475779e43fa7f27c1f53e21ec51965c}{%
+           family={PhD},
+           familyi={P\bibinitperiod},
+           given={Joanna\bibnamedelima Michalowska},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{86f24626fe227ac47bf41fd40d0840f0}
+      \strng{fullhash}{86f24626fe227ac47bf41fd40d0840f0}
+      \strng{bibnamehash}{86f24626fe227ac47bf41fd40d0840f0}
+      \strng{authorbibnamehash}{86f24626fe227ac47bf41fd40d0840f0}
+      \strng{authornamehash}{86f24626fe227ac47bf41fd40d0840f0}
+      \strng{authorfullhash}{86f24626fe227ac47bf41fd40d0840f0}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Maintenance Calorie Calculator}
+      \field{urlday}{12}
+      \field{urlmonth}{7}
+      \field{urlyear}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.omni-calculator.com/
+      \endverb
+      \verb{url}
+      \verb https://www.omni-calculator.com/
+      \endverb
+    \endentry
+    \entry{OpenDyslexic}{online}{}
+      \name{author}{1}{}{%
+        {{hash=3434c7f1a564c9772ea47e02f190f1af}{%
+           family={Gonzalez},
+           familyi={G\bibinitperiod},
+           given={Abbie},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {OpenDyslexic}%
+      }
+      \strng{namehash}{3434c7f1a564c9772ea47e02f190f1af}
+      \strng{fullhash}{3434c7f1a564c9772ea47e02f190f1af}
+      \strng{bibnamehash}{3434c7f1a564c9772ea47e02f190f1af}
+      \strng{authorbibnamehash}{3434c7f1a564c9772ea47e02f190f1af}
+      \strng{authornamehash}{3434c7f1a564c9772ea47e02f190f1af}
+      \strng{authorfullhash}{3434c7f1a564c9772ea47e02f190f1af}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Open Dyslexic, Related Research}
+      \field{urlday}{12}
+      \field{urlmonth}{7}
+      \field{urlyear}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://opendyslexic.org/related-research
+      \endverb
+      \verb{url}
+      \verb https://opendyslexic.org/related-research
+      \endverb
+    \endentry
+    \entry{colourblindness_awareness}{online}{}
+      \list{organization}{1}{%
+        {Colour Blind Awareness}%
+      }
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labeltitlesource}{title}
+      \field{title}{Types of Colour Blindness}
+      \field{urlday}{12}
+      \field{urlmonth}{7}
+      \field{urlyear}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.colourblindawareness.org/colour-blindness/types-of-colour-blindness/
+      \endverb
+      \verb{url}
+      \verb https://www.colourblindawareness.org/colour-blindness/types-of-colour-blindness/
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
 \endinput
 
