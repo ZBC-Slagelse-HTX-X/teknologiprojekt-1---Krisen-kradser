@@ -95,10 +95,12 @@ const App: React.FC = () => {
           </View>
           <View>
             <Text style={[{ fontSize: 20, width: 360, top: -18 }, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Betydning af aktivitetsniveauer</Text>
-            <Text style={[{ margin: 2 }, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Lidt aktiv: Typiske daglige aktiviteter + let motion eller sport 1-3 dage om ugen.</Text>
-            <Text style={[{ margin: 2 }, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Moderat aktiv: Daglige aktiviteter + moderat motion eller sport 3-5 dage om ugen.</Text>
-            <Text style={[{ margin: 2 }, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Aktiv: Daglige aktiviteter + hård motion eller sport 6-7 dage om ugen.</Text>
-            <Text style={[{ margin: 2 }, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Meget aktiv: Daglige aktiviteter + meget hård motion eller sport og et fysisk krævende job.</Text>
+            <Text style={[{ margin: 2 }, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Sedentær: ingen fysisk aktivitet.</Text>
+            <Text style={[{ margin: 2 }, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Lidt eller ingen aktivitet: Typiske daglige aktiviteter + let motion eller sport 1-3 dage om ugen.</Text>
+            <Text style={[{ margin: 2 }, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Let aktivitet 1-2 gange om ugen: Daglige aktiviteter + moderat motion eller sport 3-5 dage om ugen.</Text>
+            <Text style={[{ margin: 2 }, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Moderat aktivitet 2-4 gange om ugen: Daglige aktiviteter + hård motion eller sport 6-7 dage om ugen.</Text>
+            <Text style={[{ margin: 2 }, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Hård aktivitet 3-5 gange om ugen: Daglige aktiviteter + meget hård motion eller sport og et fysisk krævende job.</Text>
+            <Text style={[{ margin: 2 }, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}>Fysisk job eller hård daglig aktivitet: Daglige aktiviteter + hård daglig aktivitet.</Text>
           </View>
         </View>
       )}
@@ -229,10 +231,12 @@ const App: React.FC = () => {
                           style={[styles.pickerModal, { backgroundColor: '' }]}
                           itemStyle={[{ color: 'black' }, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}
                         >
-                          <Picker.Item label="Lidt aktiv" value="1.2" />
-                          <Picker.Item label="Moderat aktiv" value="1.55" />
-                          <Picker.Item label="Aktiv" value="1.725" />
-                          <Picker.Item label="Meget Aktiv" value="1.9" />
+                          <Picker.Item label="Sedentær" value="1.2" />
+                          <Picker.Item label="Lidt eller ingen aktivitet" value="1.44" />
+                          <Picker.Item label="Let aktivitet 1-2 gange om ugen" value="1.6" />
+                          <Picker.Item label="Moderat aktivitet 2-4 gange om ugen" value="1.75" />
+                          <Picker.Item label="Hård aktivitet 3-5 gange om ugen" value="2" />
+                          <Picker.Item label="Fysisk job eller hård daglig aktivitet" value="2.4" />
                         </Picker>
                       </View>
                     </Modal>
@@ -245,10 +249,12 @@ const App: React.FC = () => {
                     onValueChange={(itemValue) => handleInputChange(index, 'aktivitetsniveau', itemValue)}
                     itemStyle={[{ color: 'black' }, { fontFamily: dyslexiaMode ? 'open-dyslexic' : 'System' }]}
                   >
-                    <Picker.Item label="Lidt aktiv" value="1.2" />
-                    <Picker.Item label="Moderat aktiv" value="1.55" />
-                    <Picker.Item label="Aktiv" value="1.725" />
-                    <Picker.Item label="Meget Aktiv" value="1.9" />
+                    <Picker.Item label="Sedentær" value="1.2" />
+                    <Picker.Item label="Lidt eller ingen aktivitet" value="1.44" />
+                    <Picker.Item label="Let aktivitet 1-2 gange om ugen" value="1.6" />
+                    <Picker.Item label="Moderat aktivitet 2-4 gange om ugen" value="1.75" />
+                    <Picker.Item label="Hård aktivitet 3-5 gange om ugen" value="2" />
+                    <Picker.Item label="Fysisk job eller hård daglig aktivitet" value="2.4" />
                   </Picker>
                 )
               }

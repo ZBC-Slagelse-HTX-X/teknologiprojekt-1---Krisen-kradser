@@ -9,7 +9,12 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{textcomp}
+\usepackage{minted}
+\usemintedstyle{emacs}
+\usepackage{mdframed}
+\usepackage{mathtools}
 
+\usepackage[dvipsnames]{xcolor}
 % Font management (for math and normal text)
 \usepackage{sourcesanspro} % Changes font to Source Sans Pro
 \usepackage{amssymb, amsmath, amsthm} % Adds math functionality, fonts and environments
@@ -57,7 +62,11 @@
     \input{kap_problemanalyse/section_4.tex} \newpage
     \input{kap_produktprincip/section_5.tex} \newpage
     \input{kap_produktudformning/section_6.tex} \newpage
-%% Back matter
+    \input{kap_produktionsforberedelse/section_7.tex} \newpage
+    \input{kap_produktrealisering/section_8.tex} \newpage
+    \input{kap_metaselvevaluering/section_9.tex} \newpage
+    \input{kap_postscriptum_vision/section_10.tex} \newpage
+    %% Back matter
      \printbibliography[heading=bibintoc,title={Litteraturliste}]
      \begin{appendices} \newpage
         \renewcommand{\thesubsection}{\Alph{subsection}}
