@@ -18,6 +18,7 @@ Brugergrænsefladen er det, brugeren oplever, når han interagerer med applikati
 \subsubsection{Konceptdesign}
 Jf. appendiks \ref{apx:konceptart} er følgende skitser blevet udarbejdet. Herefter er disse blevet implementeret i selve applikationen. Brugergrænseflade består primært af en bjælke, der er placeret i bunden af skærmen, hvorfra brugeren kan navigere mellem forskellige sider.
 \subsubsection{Design}
+De stilistiske valg der blev taget om appens udseende fokuserede på at den skulle fremstå neutral og rolig, et minimalistisk udtryk der benyttede sig af naturlige farver var den endelige konklusion da det bedst udtrykker appens stil. Til at komme frem til denne konklusion blev Design Thinking-modellen benyttet \cite{Design-grundbog} Selve processen med at lave Brugergrænsefladen er foregået i Figma, hvor design elementerne blev lavet med fokus på simplicitet, Da en app der er lavet til at hjælpe folk i kriser skal udstråle roligt og simpelt, ikke kaotisk og kompliceret da det ikke er meget hjælp i en nødsituation
 
 \subsection{Produktgennemgang}
 Koden samt ideerne som applikationen bygger på, vil blive gennemgået nedenfor.
@@ -266,7 +267,7 @@ const { theme } = useTheme();
 \end{mdframed}
 \footnotesize\texttt{Kilde: en hvilkensomhelst fil, der anvender en form for farvepallete, altså vises til brugeren.}
 
-Forneden ses koden, hvor farvepalleterne, som eksporteres er, afhængigt af, hvad værdi, switchen har. Læg mærke til, :
+Forneden ses koden, hvor farvepalleterne, som eksporteres er, afhængigt af, hvad værdi, switchen har. Læg mærke til, at de forskellige farvepaletter, normalTheme og colorBlindTheme som er defineret i to rækker\footnote{>>Række<< er en række af elementer, som har et navn og en værdi, her et navn og en farve.}:
 \begin{mdframed}[backgroundcolor=blue!5]
 \begin{minted}[
     framesep=2mm,
